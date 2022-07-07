@@ -14,6 +14,11 @@ Rectangle {
     RowLayout {
         anchors.fill: parent
 
+        Item {
+            width: 20
+            height: 20
+        }
+
         HyperLink {
             width: 40
             height: 20
@@ -30,7 +35,7 @@ Rectangle {
             hyperLinkText.text: "add room"
 
             onClicked: {
-                RoomModel.addRoom();
+                form.open();
             }
         }
 
@@ -53,5 +58,6 @@ Rectangle {
                 root.profileClicked();
             }
         }
+
     }
 }

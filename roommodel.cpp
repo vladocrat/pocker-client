@@ -1,23 +1,79 @@
 #include "roommodel.h"
 
+#include <algorithm>
+
+#include "client.h"
+
 RoomModel::RoomModel()
 {
-
+    connect(Client::instance(), &Client::joinedSuccessfully, this, &RoomModel::updateRoom);
 }
 
-QList<Room*> RoomModel::rooms() const
+void RoomModel::addRoom(const Room& room)
 {
-    return m_rooms;
+    beginInsertRows(QModelIndex(), rowCount(), rowCount());
+    m_rooms << room;
+    endInsertRows();
 }
 
-void RoomModel::setRooms(const QList<Room*>& rooms)
+int RoomModel::rowCount(const QModelIndex& parent) const
 {
-    m_rooms = rooms;
+    Q_UNUSED(parent);
+
+    return m_rooms.count();
 }
 
-void RoomModel::addRoom()
+QVariant RoomModel::data(const QModelIndex& index, int role) const
 {
-    auto room = new Room;
-    m_rooms.append(room);
-    emit roomsChanged();
+    if (index.row() < 0 || index.row() >= m_rooms.count()) {
+        return QVariant();
+    }
+
+    auto room = m_rooms[index.row()];
+    switch (role){
+    case NameRole: {
+        return room.name();
+    }
+    case StatusRole: {
+        return room.status();
+    }
+    case PlayerCountRole: {
+        return room.playerCount();
+    }
+    case AccessRole: {
+        return room.access();
+    }
+    default:
+        return QVariant();
+    }
+}
+
+void RoomModel::updateRoom(const Room& newRoom)
+{
+    auto room = findRoomById(newRoom.id());
+    room->setName(newRoom.name());
+    room->setStatus(newRoom.status());
+    room->setAccess(newRoom.access());
+    room->setInitialBet(newRoom.access());
+    room->setPlayerCount(newRoom.playerCount());
+}
+
+QHash<int, QByteArray> RoomModel::roleNames() const
+{
+    QHash<int, QByteArray> roles;
+    roles[NameRole] = "name";
+    roles[StatusRole] = "status";
+    roles[PlayerCountRole] = "playerCount";
+    roles[AccessRole] = "access";
+
+    return roles;
+}
+
+Room* RoomModel::findRoomById(int id)
+{
+    auto room = std::find_if(m_rooms.begin(), m_rooms.end(), [id] (const Room& room) {
+        return room.id() == id;
+    });
+
+    return &room[0];
 }

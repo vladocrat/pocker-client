@@ -2,40 +2,45 @@
 #define ROOMMODEL_H
 
 #include <QObject>
+#include <QAbstractListModel>
 #include <QList>
 #include <QQmlEngine>
 
 #include "room.h"
 
-class RoomModel : public QObject
+class RoomModel : public QAbstractListModel
 {
     Q_OBJECT
 public:
+    RoomModel();
 
-    static RoomModel* instance()
-    {
-        static RoomModel model;
-        return &model;
-    }
+    enum RoomRoles {
+        NameRole = Qt::UserRole + 1,
+        StatusRole,
+        PlayerCountRole,
+        AccessRole
+    };
+    Q_ENUM(RoomRoles);
 
-    Q_PROPERTY(QList<Room*> rooms READ rooms WRITE setRooms NOTIFY roomsChanged)
-
-    QList<Room*> rooms() const;
-    void setRooms(const QList<Room*>&);
-    Q_INVOKABLE void addRoom();
+    void addRoom(const Room&);
+    int rowCount(const QModelIndex& parent = QModelIndex()) const override;
+    QVariant data(const QModelIndex& index, int role = Qt::DisplayRole) const override;
 
     static void registerType()
     {
-        qmlRegisterSingletonInstance<RoomModel>("RoomModel", 1, 0, "RoomModel", RoomModel::instance());
+        qmlRegisterUncreatableType<RoomModel>("RoomModel", 1, 0, "RoomModel", "Cant create instance of RoomModel");
     }
 
-signals:
-    void roomsChanged();
+private slots:
+    void updateRoom(const Room&);
+
+protected:
+    QHash<int, QByteArray> roleNames() const override;
 
 private:
-    RoomModel();
+    Room* findRoomById(int);
 
-    QList<Room*> m_rooms;
+    QList<Room> m_rooms;
 };
 
 #endif // ROOMMODEL_H

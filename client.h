@@ -5,6 +5,7 @@
 #include <QTcpSocket>
 #include <QQmlEngine>
 
+#include "room.h"
 #include "fieldmanager.h"
 #include "../common/LoginData.h"
 
@@ -38,6 +39,7 @@ signals:
     void registrationFailed();
     void loginFailed(const QString& msg);
     void loginSuccessful();
+    void joinedSuccessfully(const Room& room);
 
 private:
     Client();

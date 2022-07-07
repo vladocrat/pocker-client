@@ -6,6 +6,7 @@
 #include "client.h"
 #include "fieldmanager.h"
 #include "user.h"
+#include "room.h"
 #include "../common/LoginData.h"
 #include "../common/protocol.h"
 #include "../common/Message.h"
@@ -113,6 +114,12 @@ void Client::handleData(const QByteArray& arr)
         emit loginSuccessful();
         break;
     }
+    case Protocol::Errors::SV_LOGIN_ERR: {
+        Message msg;
+        stream >> msg;
+        emit loginFailed(msg.text);
+        break;
+    }
     case Protocol::Server::SV_REGISTER: {
         //TODO change
         bool success;
@@ -124,10 +131,27 @@ void Client::handleData(const QByteArray& arr)
         }
         break;
     }
-    case Protocol::Errors::SV_LOGIN_ERR: {
-        Message msg;
-        stream >> msg;
-        emit loginFailed(msg.text);
+    case Protocol::Errors::SV_REGISTRATION_ERR: {
+        //TODO
+        break;
+    }
+    case Protocol::Server::SV_JOINED_SUCCESSFULLY: {
+        //TODO
+        QByteArray arr;
+        QDataStream stream(arr);
+        stream >> arr;
+        auto room = Room::deserialize(arr);
+
+        if (room.id() == -1) {
+            qDebug() << "failed to join";
+        }
+
+        emit joinedSuccessfully(room);
+        break;
+    }
+    case Protocol::Server::SV_ROOM_UPDATED: {
+        //barr roomData
+
         break;
     }
     default: {

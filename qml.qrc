@@ -12,5 +12,9 @@
         <file>RoomListingPage.qml</file>
         <file>TopBar.qml</file>
         <file>RoomScreenDelegate.qml</file>
+        <file>RoomCreationForm.qml</file>
+        <file>Globals.qml</file>
+        <file>FormSlider.qml</file>
+        <file>CustomToggleButton.qml</file>
     </qresource>
 </RCC>

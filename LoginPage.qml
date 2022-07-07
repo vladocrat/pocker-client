@@ -2,6 +2,7 @@ import QtQuick 2.0
 import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
 import QtGraphicalEffects 1.12
+import Globals 1.0
 import LoginController 1.0
 import Client 1.0
 
@@ -14,7 +15,6 @@ Image {
     signal failedToSendRequest();
 
     property int fontPointSize: 13;
-    property string fontFamily: "montserrat"
 
     FormBox {
         id: box
@@ -47,7 +47,7 @@ Image {
                 color: "#6c1e37"
                 font {
                     pointSize: 20
-                    family: root.fontFamily
+                    family: Globals.fontFamily
                     bold: true
                 }
             }
@@ -60,7 +60,7 @@ Image {
                 placeholderText: "login"
                 font {
                     pointSize: root.fontPointSize
-                    family: root.fontFamily
+                    family: Globals.fontFamily
                 }
 
                 onTextChanged: {
@@ -76,7 +76,7 @@ Image {
                 echoMode: TextInput.Password
                 font {
                     pointSize: root.fontPointSize
-                    family: root.fontFamily
+                    family: Globals.fontFamily
                 }
 
                 onTextChanged: {
@@ -102,7 +102,6 @@ Image {
                 Layout.fillWidth: true
                 height: password.height
                 text: "Log In"
-                fontFamily: root.fontFamily
                 iconSource: "file:///C:/image/arrows.png"
 
                 onClicked: {

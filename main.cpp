@@ -3,6 +3,7 @@
 #include <QQmlContext>
 #include <QQmlEngine>
 #include <QJSEngine>
+#include <memory>
 
 #include "client.h"
 #include "fieldmanager.h"
@@ -16,7 +17,6 @@
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
-    QQmlApplicationEngine engine;
 
     Client::registerType();
     FieldManager::registerType();
@@ -25,12 +25,23 @@ int main(int argc, char *argv[])
     Page::registerType();
     RoomModel::registerType();
 
-    QList<Room*> rooms;
-    rooms.append(new Room);
-    rooms.append(new Room);
-    rooms.append(new Room);
-    rooms.append(new Room);
-    RoomModel::instance()->setRooms(rooms);
+    qmlRegisterSingletonType(QUrl("qrc:/Globals.qml"), "Globals", 1, 0, "Globals");
+    QQmlApplicationEngine engine;
+
+    std::unique_ptr<RoomModel> model = std::make_unique<RoomModel>();
+    Room room;
+    room.setName("cool name");
+    room.setPlayerCount(1);
+    room.setStatus(Room::Status::Playing);
+    room.setAccess(Room::Access::Public);
+
+    model->addRoom(room);
+    model->addRoom(Room());
+    model->addRoom(Room());
+    model->addRoom(Room());
+
+    engine.rootContext()->setContextProperty("roomModel", model.get());
+
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

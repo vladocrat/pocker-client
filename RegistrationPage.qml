@@ -3,6 +3,7 @@ import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
 import LoginController 1.0
 import Client 1.0
+import Globals 1.0
 
 Image {
     id: root
@@ -13,7 +14,6 @@ Image {
     signal failedToSendRequest();
 
     property int fontPointSize: 13;
-    property string fontFamily: "montserrat"
 
     FormBox {
         id: box
@@ -47,7 +47,7 @@ Image {
                 color: "#6c1e37"
                 font {
                     pointSize: 20
-                    family: root.fontFamily
+                    family: Globals.fontFamily
                     bold: true
                 }
             }
@@ -60,7 +60,7 @@ Image {
                 placeholderText: "login"
                 font {
                    pointSize: root.fontPointSize
-                   family: root.fontFamily
+                   family: Globals.fontFamily
                 }
             }
 
@@ -72,7 +72,7 @@ Image {
                 //TODO add mask
                 font {
                    pointSize: root.fontPointSize
-                   family: root.fontFamily
+                   family: Globals.fontFamily
                 }
             }
 
@@ -83,7 +83,7 @@ Image {
                 placeholderText: "password"
                 font {
                    pointSize: root.fontPointSize
-                   family: root.fontFamily
+                   family: Globals.fontFamily
                 }
             }
 
@@ -105,7 +105,6 @@ Image {
                 Layout.fillWidth: true
                 text: "Register"
                 iconSource: "file:///C:/image/arrows.png"
-                fontFamily: root.fontFamily
                 height: password.height
 
                 onClicked: {

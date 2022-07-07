@@ -1,7 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.12
-import RoomModel 1.0
+import Client 1.0
 
 ColumnLayout {
     id: root
@@ -10,16 +10,14 @@ ColumnLayout {
     signal registrationClicked();
     signal profileClicked();
 
-    width: 625
-    height: 400
     spacing: 10
 
     TopBar {
         id: topBar
 
-        width: parent.width
-        height: 20
+        Layout.preferredHeight: 20
         Layout.alignment: Qt.AlignTop
+        Layout.fillWidth: true
 
         onLoginClicked: {
             root.loginClicked();
@@ -37,17 +35,22 @@ ColumnLayout {
     GridView {
         id: gridView
 
-        Layout.alignment: Qt.AlignHCenter
-        width: root.width
-        height: root.height - topBar.height
+        Layout.fillHeight: true
+        Layout.fillWidth: true
         clip: true
-        cellWidth: 125
-        cellHeight: 100
-        ScrollBar.vertical: ScrollBar {}
-        model: RoomModel.rooms
+        cellWidth: 154
+        cellHeight: 120
+        ScrollBar.vertical: ScrollBar { policy: ScrollBar.AlwaysOn }
+        model: roomModel
         delegate: RoomScreenDelegate {
             width: gridView.cellWidth - 10
             height: gridView.cellHeight - 10
+            roomIndex: index
+            roomName: model.name
+            roomStatus: model.status
+            roomAccess: model.access
+            roomPlayerCount: model.playerCount
+            radius: 4
         }
     }
 }

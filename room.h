@@ -4,40 +4,46 @@
 #include <QObject>
 #include <QString>
 
-class Room : public QObject
+class Room
 {
-    Q_OBJECT
 public:
     Room();
     Room(const Room&);
 
     enum Status {
-        Waiting,
+        Waiting = 0,
         Playing
     };
-    Q_ENUM(Status)
 
-    Q_PROPERTY(QString name READ name WRITE setName NOTIFY nameChanged)
-    Q_PROPERTY(Status status READ status WRITE setStatus NOTIFY statusChanged)
-    Q_PROPERTY(int playerCount READ playerCount WRITE setPlayerCount NOTIFY playerCountChanged)
+    enum Access {
+        Public = 0,
+        Private
+    };
 
     QString name() const;
     Status status() const;
     int playerCount() const;
+    Access access() const;
+    QString statusString() const;
+    int initialBet() const;
+    int id() const;
     void setName(const QString&);
     void setStatus(Status);
     void setPlayerCount(int);
+    void setAccess(Access);
+    void setInitialBet(int);
+    void setId(int);
 
-signals:
-    void nameChanged();
-    void statusChanged();
-    void playerCountChanged();
+    static QByteArray serialize(const Room&);
+    static Room deserialize(const QByteArray&);
 
 private:
-    QString m_name;
-    Status m_status;
-    int m_playerCount;
-    const int m_maxPlayers = 4;
+    int m_id = -1;
+    QString m_name = "default";
+    Status m_status = Waiting;
+    int m_playerCount = 0;
+    Access m_access = Public;
+    int m_initialBet = 0;
 };
 
 #endif // ROOM_H

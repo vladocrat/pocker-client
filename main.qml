@@ -13,6 +13,15 @@ Window {
     visible: true
     title: qsTr("pocker")
 
+    RoomCreationForm {
+        id: form
+
+        x: Math.round((root.width - form.width) / 2)
+        y: Math.round((root.height - form.height) / 2)
+        width: 270
+        height: 300
+    }
+
     Item {
         id: item
         anchors.fill: parent
@@ -21,10 +30,7 @@ Window {
             id: layout
 
             currentIndex: Pages.RoomListingPage
-            anchors {
-                horizontalCenter: parent.horizontalCenter
-                verticalCenter: parent.verticalCenter
-            }
+            anchors.fill: parent
 
             LoginPage {
                 Layout.alignment: Qt.AlignCenter                
@@ -65,7 +71,8 @@ Window {
             }
 
             RoomListingPage {
-                Layout.alignment: Qt.AlignCenter
+                Layout.fillHeight: true
+
 
                 onLoginClicked: {
                     layout.currentIndex = Pages.LoginPage;

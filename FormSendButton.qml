@@ -7,7 +7,6 @@ Rectangle {
     signal clicked();
 
     property string text: "button"
-    property string fontFamily: "monserrat"
     property alias mouseArea: mouseArea
     property string hoverColor: "#ecd4dc"
     property string pressColor: "#ed4771"
@@ -28,13 +27,13 @@ Rectangle {
         color: root.textColor
         font {
             pointSize: 10
-            family: root.fontFamily
+            family: Globals.fontFamily
             bold: true
         }
         anchors {
             verticalCenter: root.verticalCenter
             left: root.left
-            leftMargin: root.width / 3
+            leftMargin: root.iconSource === "" ? root.width / 4 : root.width / 3
         }
     }
 
