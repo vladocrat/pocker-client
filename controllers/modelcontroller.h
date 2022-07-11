@@ -17,7 +17,7 @@ public:
         return &mc;
     }
 
-    Q_INVOKABLE bool createRoom(const QString& name, int maxPlayers, int initialBet, int access, const QString& password = "");
+    Q_INVOKABLE bool createRoom(const QString& name, int maxPlayers, int initialBet, bool access, const QString& password = "");
     Q_INVOKABLE void append(const Room& room);
     RoomModel* model();
 
@@ -36,11 +36,12 @@ private:
         room.setPlayerCount(1);
         room.setStatus(Room::Status::Playing);
         room.setAccess(Room::Access::Public);
+        room.setInitialBet(1000);
 
         m_model.addRoom(room);
-        m_model.addRoom(Room());
-        m_model.addRoom(Room());
-        m_model.addRoom(Room());
+//        m_model.addRoom(Room());
+//        m_model.addRoom(Room());
+//        m_model.addRoom(Room());
     }
     ~ModelController() {};
     ModelController(const ModelController&) = delete;

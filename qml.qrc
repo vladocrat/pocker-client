@@ -16,5 +16,7 @@
         <file>Globals.qml</file>
         <file>FormSlider.qml</file>
         <file>CustomToggleButton.qml</file>
+        <file>images/lock.png</file>
+        <file>images/unlock.png</file>
     </qresource>
 </RCC>

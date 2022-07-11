@@ -18,7 +18,9 @@ public:
         NameRole = Qt::UserRole + 1,
         StatusRole,
         PlayerCountRole,
-        AccessRole
+        AccessRole,
+        InitialBetRole,
+        MaxPlayerCountRole
     };
     Q_ENUM(RoomRoles);
 

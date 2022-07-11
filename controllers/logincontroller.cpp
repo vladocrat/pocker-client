@@ -10,6 +10,7 @@
 
 namespace Internal
 {
+//TODO CLIENT SHOULD DO THE SEDNING;
     bool sendData(int command, const LoginData& data)
     {
         auto socket = Client::instance()->getSocket();

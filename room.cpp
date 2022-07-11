@@ -13,7 +13,13 @@ Room::Room(const Room& other)
     m_name = other.name();
     m_status = other.status();
     m_playerCount = other.playerCount();
+    m_maxPlayerCount = other.maxPlayerCount();
     m_access = other.access();
+    m_initialBet = other.initialBet();
+
+    if (other.access() == Room::Private) {
+        m_password = other.password();
+    }
 }
 
 QString Room::password() const
@@ -21,13 +27,13 @@ QString Room::password() const
     return m_password;
 }
 
-Room::Access Room::intToAccess(int number)
+Room::Access Room::toAccess(int number)
 {
     switch (number) {
-    case 0: {
+    case 1: {
         return Room::Access::Public;
     }
-    case 1: {
+    case 0: {
         return Room::Access::Private;
     }
     default:
@@ -64,6 +70,20 @@ QString Room::statusString() const
     }
 }
 
+QString Room::accessString() const
+{
+    switch (m_access) {
+    case Access::Public: {
+        return "Public";
+    }
+    case Access::Private: {
+        return "Private";
+    }
+    default:
+        return "undentified";
+    }
+}
+
 int Room::initialBet() const
 {
     return m_initialBet;
@@ -96,7 +116,7 @@ void Room::setAccess(Access access)
 
 void Room::setAccess(int access)
 {
-    m_access = intToAccess(access);
+    m_access = toAccess(access);
 }
 
 void Room::setInitialBet(int bet)
@@ -122,7 +142,7 @@ void Room::setPassword(const QString& password)
 QByteArray Room::serialize(const Room& room)
 {
     QByteArray arr;
-    QDataStream stream(arr);
+    QDataStream stream(&arr, QIODevice::WriteOnly);
     stream << room.id()
            << room.name()
            << room.status()

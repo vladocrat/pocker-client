@@ -7,41 +7,15 @@ import Client 1.0
 ColumnLayout {
     id: root
 
-    Row {
-        Text {
-            text: "Username: "
-        }
-        Text {
-            color: "red"
-            text: User.name
-        }
+    Text {
+        text: "Username: " + User.name
     }
 
-    Row {
-        Text {
-            text: "email: "
-        }
-        Text {
-            color: "red"
-            text: User.email
-        }
+    Text {
+        text: "email: " + User.email
     }
 
-    Row {
-        Text {
-            text: "pfp: "
-        }
-        Text {
-            color: "red"
-            text: User.pfpLink
-        }
-    }
-
-    Button {
-        text: "send hello";
-
-        onClicked: {
-            Client.sendCommand(0);
-        }
+    Text {
+        text: "pfp: " + User.pfpLink
     }
 }

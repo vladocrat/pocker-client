@@ -35,13 +35,19 @@ QVariant RoomModel::data(const QModelIndex& index, int role) const
         return room.name();
     }
     case StatusRole: {
-        return room.status();
+        return room.statusString();
     }
     case PlayerCountRole: {
         return room.playerCount();
     }
     case AccessRole: {
-        return room.access();
+        return room.accessString();
+    }
+    case InitialBetRole: {
+        return room.initialBet();
+    }
+    case MaxPlayerCountRole: {
+        return room.maxPlayerCount();
     }
     default:
         return QVariant();
@@ -65,6 +71,8 @@ QHash<int, QByteArray> RoomModel::roleNames() const
     roles[StatusRole] = "status";
     roles[PlayerCountRole] = "playerCount";
     roles[AccessRole] = "access";
+    roles[InitialBetRole] = "initialBet";
+    roles[MaxPlayerCountRole] = "maxPlayerCount";
 
     return roles;
 }

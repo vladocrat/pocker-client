@@ -8,6 +8,7 @@
 #include "user.h"
 #include "room.h"
 #include "roommodel.h"
+#include "controllers/modelcontroller.h"
 #include "LoginData.h"
 #include "protocol.h"
 #include "Message.h"
@@ -49,7 +50,7 @@ bool Client::sendCommand(int command)
     return true;
 }
 
-bool Client::send(int command, const QByteArray &data)
+bool Client::send(int command, const QByteArray& data)
 {
     if (!checkConnection()) return false;
 
@@ -157,10 +158,9 @@ void Client::handleData(const QByteArray& arr)
     }
     case Protocol::Server::SV_ROOM_CREATED: {
         QByteArray roomData;
-        QDataStream stream(roomData);
+        stream >> roomData;
         auto room = Room::deserialize(roomData);
-
-
+        ModelController::instance()->append(room);
         break;
     }
     case Protocol::Errors::SV_FAILED_TO_CREATE_ROOM: {

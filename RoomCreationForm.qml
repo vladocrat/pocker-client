@@ -94,7 +94,12 @@ Popup {
                 focus: item.visible
                 width: 40
                 height: 15
-                inputMask: "0 0 0 0"
+                inputMask: "0000"
+                selectByMouse: true
+
+                Keys.onSpacePressed: {
+                    return;
+                }
             }
         }
 
@@ -121,6 +126,8 @@ Popup {
                     //TODO show error to user
                     console.log("failed to create room");
                 }
+
+                form.close();
             }
         }
     }

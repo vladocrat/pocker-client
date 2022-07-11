@@ -4,6 +4,8 @@
 #include <QObject>
 #include <QString>
 
+#include "Globals.h"
+
 class Room
 {
 public:
@@ -26,6 +28,7 @@ public:
     int playerCount() const;
     Access access() const;
     QString statusString() const;
+    QString accessString() const;
     int initialBet() const;
     int maxPlayerCount() const;
     int id() const;
@@ -39,7 +42,7 @@ public:
     void setMaxPlayerCount(int);
     void setPassword(const QString&);
 
-    static Access intToAccess(int);
+    static Access toAccess(int); //TODO doesn't work properly? check addRoom from controller
     static QByteArray serialize(const Room&);
     static Room deserialize(const QByteArray&);
 
@@ -49,8 +52,8 @@ private:
     Status m_status = Waiting;
     int m_playerCount = 1;
     Access m_access = Public;
-    int m_initialBet = 50;
-    int m_maxPlayerCount = 2;
+    int m_initialBet = Globals::MIN_INITIAL_BET;
+    int m_maxPlayerCount = Globals::MIN_PLAYERS;
     QString m_password = "";
 };
 

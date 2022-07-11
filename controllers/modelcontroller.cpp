@@ -1,8 +1,10 @@
 #include "modelcontroller.h"
 
 #include "Globals.h"
+#include "client.h"
+#include "protocol.h"
 
-bool ModelController::createRoom(const QString& name, int maxPlayers, int initialBet, int access, const QString& password)
+bool ModelController::createRoom(const QString& name, int maxPlayers, int initialBet, bool access, const QString& password)
 {
     if (name == "") {
         qDebug() << "name is empty";
@@ -22,7 +24,7 @@ bool ModelController::createRoom(const QString& name, int maxPlayers, int initia
         return false;
     }
 
-    if (Room::intToAccess(access) == Room::Private && password == "") {
+    if (Room::toAccess(access) == Room::Private && (password == "" || password.length() != 4)) {
         qDebug() << "access is set to private but no password was provided";
 
         return false;
@@ -38,7 +40,11 @@ bool ModelController::createRoom(const QString& name, int maxPlayers, int initia
         room.setPassword(password);
     }
 
-    append(room);
+    if (!Client::instance()->send(Protocol::Client::CL_CREATE_ROOM, Room::serialize(room))) {
+        qDebug() << "failed to send to the server";
+
+        return false;
+    }
 
     return true;
 }
