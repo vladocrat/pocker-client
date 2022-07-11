@@ -1,4 +1,5 @@
 #include "fieldmanager.h"
+
 #include <QDebug>
 
 FieldManager::FieldManager()

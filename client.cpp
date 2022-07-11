@@ -7,9 +7,10 @@
 #include "fieldmanager.h"
 #include "user.h"
 #include "room.h"
-#include "../common/LoginData.h"
-#include "../common/protocol.h"
-#include "../common/Message.h"
+#include "roommodel.h"
+#include "LoginData.h"
+#include "protocol.h"
+#include "Message.h"
 
 Client::Client()
 {
@@ -151,6 +152,18 @@ void Client::handleData(const QByteArray& arr)
     }
     case Protocol::Server::SV_ROOM_UPDATED: {
         //barr roomData
+
+        break;
+    }
+    case Protocol::Server::SV_ROOM_CREATED: {
+        QByteArray roomData;
+        QDataStream stream(roomData);
+        auto room = Room::deserialize(roomData);
+
+
+        break;
+    }
+    case Protocol::Errors::SV_FAILED_TO_CREATE_ROOM: {
 
         break;
     }

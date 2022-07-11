@@ -19,7 +19,7 @@ Window {
         x: Math.round((root.width - form.width) / 2)
         y: Math.round((root.height - form.height) / 2)
         width: 270
-        height: 300
+        height: 350
     }
 
     Item {

@@ -7,7 +7,7 @@
 
 #include "room.h"
 #include "fieldmanager.h"
-#include "../common/LoginData.h"
+#include "LoginData.h"
 
 class Client :  public QObject
 {

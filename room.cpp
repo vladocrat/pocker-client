@@ -1,6 +1,7 @@
 #include "room.h"
 
 #include <QDataStream>
+#include <QDebug>
 
 Room::Room()
 {
@@ -13,6 +14,30 @@ Room::Room(const Room& other)
     m_status = other.status();
     m_playerCount = other.playerCount();
     m_access = other.access();
+}
+
+QString Room::password() const
+{
+    return m_password;
+}
+
+Room::Access Room::intToAccess(int number)
+{
+    switch (number) {
+    case 0: {
+        return Room::Access::Public;
+    }
+    case 1: {
+        return Room::Access::Private;
+    }
+    default:
+    {
+        qDebug() << "unkown command";
+        break;
+    }
+    }
+
+    return {};
 }
 
 QString Room::name() const
@@ -44,6 +69,11 @@ int Room::initialBet() const
     return m_initialBet;
 }
 
+int Room::maxPlayerCount() const
+{
+    return m_maxPlayerCount;
+}
+
 int Room::id() const
 {
     return m_id;
@@ -64,6 +94,11 @@ void Room::setAccess(Access access)
     m_access = access;
 }
 
+void Room::setAccess(int access)
+{
+    m_access = intToAccess(access);
+}
+
 void Room::setInitialBet(int bet)
 {
     m_initialBet = bet;
@@ -72,6 +107,16 @@ void Room::setInitialBet(int bet)
 void Room::setId(int id)
 {
     m_id = id;
+}
+
+void Room::setMaxPlayerCount(int maxPlayerCount)
+{
+    m_maxPlayerCount = maxPlayerCount;
+}
+
+void Room::setPassword(const QString& password)
+{
+    m_password = password;
 }
 
 QByteArray Room::serialize(const Room& room)
@@ -83,7 +128,9 @@ QByteArray Room::serialize(const Room& room)
            << room.status()
            << room.playerCount()
            << room.access()
-           << room.initialBet();
+           << room.initialBet()
+           << room.password()
+           << room.maxPlayerCount();
 
     return arr;
 }
@@ -97,7 +144,9 @@ Room Room::deserialize(const QByteArray& arr)
             >> room.m_status
             >> room.m_playerCount
             >> room.m_status
-            >> room.m_initialBet;
+            >> room.m_initialBet
+            >> room.m_password
+            >> room.m_maxPlayerCount;
 
     return room;
 }

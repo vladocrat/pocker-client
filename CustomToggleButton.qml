@@ -4,7 +4,7 @@ import QtQuick.Controls 2.12
 Rectangle {
     id: root
 
-    readonly property bool on: leftSide.enabled
+    readonly property bool on: rightSide.enabled
 
     Rectangle {
         id: leftSide
@@ -12,7 +12,7 @@ Rectangle {
         width: root.width / 2
         height: root.height
         anchors.left: root.left
-        color: leftSide.enabled ? "#65ba65" : "#0be30b"
+        color: leftSide.enabled ? "#0be30b" : "#65ba65"
         enabled: !rightSide.enabled
 
         Text {
@@ -42,7 +42,7 @@ Rectangle {
         width: root.width / 2
         height: root.height
         anchors.right: root.right
-        color: rightSide.enabled ? "#bd5959" : "#e30b0b"
+        color: rightSide.enabled ? "#e30b0b" : "#bd5959"
         enabled: !leftSide.enabled
 
         Text {

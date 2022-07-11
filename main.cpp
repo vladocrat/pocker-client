@@ -7,12 +7,13 @@
 
 #include "client.h"
 #include "fieldmanager.h"
-#include "logincontroller.h"
 #include "user.h"
 #include "Pages.h"
 #include "roommodel.h"
 #include "room.h"
-#include "../common/protocol.h"
+#include "controllers/logincontroller.h"
+#include "controllers/modelcontroller.h"
+#include "protocol.h"
 
 int main(int argc, char *argv[])
 {
@@ -20,28 +21,18 @@ int main(int argc, char *argv[])
 
     Client::registerType();
     FieldManager::registerType();
-    LoginController::registerType();
     User::registerType();
     Page::registerType();
     RoomModel::registerType();
 
+    LoginController::registerType();
+    ModelController::registerType();
+
     qmlRegisterSingletonType(QUrl("qrc:/Globals.qml"), "Globals", 1, 0, "Globals");
+
     QQmlApplicationEngine engine;
 
-    std::unique_ptr<RoomModel> model = std::make_unique<RoomModel>();
-    Room room;
-    room.setName("cool name");
-    room.setPlayerCount(1);
-    room.setStatus(Room::Status::Playing);
-    room.setAccess(Room::Access::Public);
-
-    model->addRoom(room);
-    model->addRoom(Room());
-    model->addRoom(Room());
-    model->addRoom(Room());
-
-    engine.rootContext()->setContextProperty("roomModel", model.get());
-
+    engine.rootContext()->setContextProperty("roomModel", ModelController::instance()->model());
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));
     QObject::connect(&engine, &QQmlApplicationEngine::objectCreated,

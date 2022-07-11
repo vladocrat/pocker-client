@@ -1,10 +1,10 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.14
+import Globals 1.0
 
 TextField {
     id: root
 
-    property string mainColor: "#dcf0ec"
     property string textColor: "#308275"
     property alias backgroundRect: background
 
@@ -13,6 +13,6 @@ TextField {
         id: background
 
         radius: 4
-        color: root.mainColor
+        color: Globals.mainColor
     }
 }
