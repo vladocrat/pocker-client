@@ -4,7 +4,7 @@
 #include "client.h"
 #include "protocol.h"
 
-bool ModelController::createRoom(const QString& name, int maxPlayers, int initialBet, bool access, const QString& password)
+bool ModelController::createRoom(const QString& name, int maxPlayers, int initialBet, int access, const QString& password)
 {
     if (name == "") {
         qDebug() << "name is empty";

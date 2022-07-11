@@ -40,7 +40,7 @@ QVariant RoomModel::data(const QModelIndex& index, int role) const
     case PlayerCountRole: {
         return room.playerCount();
     }
-    case AccessRole: {
+    case AccessStringRole: {
         return room.accessString();
     }
     case InitialBetRole: {
@@ -70,7 +70,7 @@ QHash<int, QByteArray> RoomModel::roleNames() const
     roles[NameRole] = "name";
     roles[StatusRole] = "status";
     roles[PlayerCountRole] = "playerCount";
-    roles[AccessRole] = "access";
+    roles[AccessStringRole] = "access";
     roles[InitialBetRole] = "initialBet";
     roles[MaxPlayerCountRole] = "maxPlayerCount";
 

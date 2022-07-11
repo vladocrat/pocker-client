@@ -154,7 +154,7 @@ Rectangle {
                         Image {
                             width: 15
                             height: 15
-                            source: if (root.roomAccess == "Private") {
+                            source: if (root.roomAccess === "Private") {
                                         return "images/lock.png";
                                     } else {
                                         return "images/unlock.png";

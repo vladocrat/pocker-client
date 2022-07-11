@@ -11,6 +11,7 @@ class Room
 public:
     Room();
     Room(const Room&);
+    Room& operator=(const Room&);
 
     enum Status {
         Waiting = 0,
@@ -18,8 +19,8 @@ public:
     };
 
     enum Access {
-        Public = 0,
-        Private
+        Private = 0,
+        Public
     };
 
     QString password() const;

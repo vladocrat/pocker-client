@@ -22,6 +22,13 @@ Room::Room(const Room& other)
     }
 }
 
+Room& Room::operator=(const Room& other)
+{
+    auto room = new Room(other);
+
+    return *room;
+}
+
 QString Room::password() const
 {
     return m_password;
@@ -163,7 +170,7 @@ Room Room::deserialize(const QByteArray& arr)
             >> room.m_name
             >> room.m_status
             >> room.m_playerCount
-            >> room.m_status
+            >> room.m_access
             >> room.m_initialBet
             >> room.m_password
             >> room.m_maxPlayerCount;
