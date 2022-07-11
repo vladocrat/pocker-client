@@ -42,14 +42,6 @@ Rectangle {
         initialItem: firstScreen
 
         pushEnter: Transition {
-            ParallelAnimation  {
-                PropertyAnimation {
-                    target: firstScreen
-                    property: "height"
-                    from: firstScreen.height
-                    to: 0
-                    duration: internal.firstScreenAnimDuration
-                }
 
                 PropertyAnimation {
                     target: secondScreen
@@ -58,19 +50,10 @@ Rectangle {
                     to: root.height
                     duration: internal.secondScreenAnimDuration
                 }
-            }
+
         }
 
         pushExit: Transition {
-            ParallelAnimation {
-                PropertyAnimation {
-                    target: firstScreen
-                    property: "height"
-                    from: firstScreen.height
-                    to: 0
-                    duration: internal.firstScreenAnimDuration
-                }
-
                 PropertyAnimation {
                     target: secondScreen
                     property: "height"
@@ -78,18 +61,9 @@ Rectangle {
                     to: root.height
                     duration: internal.secondScreenAnimDuration
                 }
-            }
         }
 
         popEnter: Transition {
-            ParallelAnimation {
-                PropertyAnimation {
-                    target: firstScreen
-                    property: "height"
-                    from: 0
-                    to: root.height
-                    duration: internal.firstScreenAnimDuration
-                }
 
                 PropertyAnimation {
                     target: secondScreen
@@ -98,7 +72,7 @@ Rectangle {
                     to: 0
                     duration: internal.secondScreenAnimDuration
                 }
-            }
+
         }
 
         popExit: Transition {
