@@ -4,16 +4,16 @@ QT += quick network
 # In order to do so, uncomment the following line.
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 INCLUDEPATH += "..\\client\\" \
-               "..\\common\\"
+               ..\\client\\pocker-common\\ \
 
 SOURCES += \
         controllers\\*.cpp \
         client.cpp \
         fieldmanager.cpp \
         main.cpp \
-        room.cpp \
         roommodel.cpp \
         user.cpp \
+        pocker-common\\*.cpp \
 
 RESOURCES += qml.qrc
 
@@ -29,13 +29,12 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
 HEADERS += \
-    ../common/Globals.h \
     controllers\\*.h \
+    pocker-common\\*.h \
     Pages.h \
     client.h \
     fieldmanager.h \
-    room.h \
     roommodel.h \
     user.h \
-    ../common/*.h \
+
 
