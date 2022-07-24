@@ -1,7 +1,10 @@
 QT += quick network
 
-INCLUDEPATH += "..\\client\\" \
+INCLUDEPATH += ..\\client\\ \
                ..\\client\\pocker-common\\ \
+               ..\\pocker-client\\ \
+               ..\\pocker-client\\pocker-common\\ \
+               ..\\pocker-client\\pocker-common\\headers\\ \
 
 SOURCES += \
         controllers\\*.cpp \
