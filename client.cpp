@@ -142,7 +142,7 @@ void Client::handleData(const QByteArray& arr)
         QByteArray arr;
         QDataStream stream(arr);
         stream >> arr;
-        auto room = Room::deserialize(arr);
+        auto room = Room::deserialise(arr);
 
         if (room.id() == -1) {
             qDebug() << "failed to join";
@@ -159,7 +159,7 @@ void Client::handleData(const QByteArray& arr)
     case Protocol::Server::SV_ROOM_CREATED: {
         QByteArray roomData;
         stream >> roomData;
-        auto room = Room::deserialize(roomData);
+        auto room = Room::deserialise(roomData);
         ModelController::instance()->append(room);
         break;
     }

@@ -40,7 +40,7 @@ bool ModelController::createRoom(const QString& name, int maxPlayers, int initia
         room.setPassword(password);
     }
 
-    if (!Client::instance()->send(Protocol::Client::CL_CREATE_ROOM, Room::serialize(room))) {
+    if (!Client::instance()->send(Protocol::Client::CL_CREATE_ROOM, Room::serialise(room))) {
         qDebug() << "failed to send to the server";
 
         return false;
