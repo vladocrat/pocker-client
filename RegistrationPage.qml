@@ -104,7 +104,7 @@ Image {
 
                 Layout.fillWidth: true
                 text: "Register"
-                iconSource: "file:///C:/image/arrows.png"
+                iconSource: "images/arrows.png"
                 height: password.height
 
                 onClicked: {
