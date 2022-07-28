@@ -31,7 +31,6 @@ Item {
     }
 
     RowLayout {
-
         spacing: 50
 
         anchors{

@@ -18,5 +18,6 @@
         <file>CustomToggleButton.qml</file>
         <file>images/lock.png</file>
         <file>images/unlock.png</file>
+        <file>ProfileImage.qml</file>
     </qresource>
 </RCC>
