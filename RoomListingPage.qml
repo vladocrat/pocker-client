@@ -3,7 +3,7 @@ import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.12
 import Client 1.0
 
-Item {
+ColumnLayout {
     id: root
 
     signal loginClicked();
@@ -13,8 +13,8 @@ Item {
     TopBar {
         id: topBar
 
-        anchors.top: root.top
-        width: root.width
+        Layout.fillWidth: true
+        Layout.preferredWidth: root.width
         height: 20
 
         onLoginClicked: {
@@ -30,22 +30,56 @@ Item {
         }
     }
 
-    RowLayout {
-        spacing: 50
-
-        anchors{
-            top: topBar.bottom
-            right: root.right
-            left: root.left
-            bottom: root.bottom
-            topMargin: 10
-        }
-
-        ProfilePage {
+    Row {
+        ColumnLayout {
             Layout.fillHeight: true
-            Layout.fillWidth: true
-            Layout.leftMargin: 2
             Layout.alignment: Qt.AlignTop
+
+            Item {
+                Layout.fillWidth: true
+                Layout.preferredHeight: 40
+
+                RowLayout {
+                    width: parent.width
+                    height: parent.height
+
+                    Item {
+                        id: whiteSpaceFiller
+
+                        Layout.alignment: Qt.AlignLeft
+                        Layout.preferredHeight: parent.height
+                        Layout.preferredWidth: ( parent.width * 2) / 3
+                    }
+
+                    BurgerButton {
+                        id: bb
+
+                        Layout.alignment: Qt.AlignRight
+                    }
+                }
+
+                MouseArea {
+                    anchors.fill: parent
+
+                    onClicked: {
+                        if (bb.state === "menu") {
+                            bb.state = "back";
+                            whiteSpaceFiller.visible = false;
+
+                            return;
+                        }
+
+                        bb.state= "menu";
+                        whiteSpaceFiller.visible = true;
+                    }
+                }
+            }
+
+            ProfilePage {
+                Layout.fillHeight: true
+                Layout.fillWidth: true
+                Layout.leftMargin: 3
+            }
         }
 
         GridView {
@@ -73,3 +107,4 @@ Item {
         }
     }
 }
+

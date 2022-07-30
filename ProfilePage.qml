@@ -7,21 +7,48 @@ import Client 1.0
 ColumnLayout {
     id: root
 
+    property alias pic: img
+
+    signal hideInfo();
+    signal showInfo();
+
     ProfileImage {
-        width: 40
-        height: 40
+        id: img
+
+        Layout.alignment: Qt.AlignHCenter
+        Layout.preferredWidth: 40
+        Layout.preferredHeight: 40
         source: "file:///C:/Users/sherlock/Desktop/img.jpg"
     }
 
     Text {
+        id: username
+
         text: "Username: " + User.name
     }
 
     Text {
+        id: email
+
         text: "email: " + User.email
     }
 
     Text {
+        id: pfpLink
+
         text: "pfp: " + User.pfpLink
+    }   
+
+    onHideInfo: {
+        username.visible = false;
+        email.visible = false;
+        pfpLink.visible = false;
+    }
+
+    onShowInfo: {
+        username.visible = true;
+        email.visible = true;
+        pfpLink.visible = true;
     }
 }
+
