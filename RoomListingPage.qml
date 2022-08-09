@@ -15,7 +15,7 @@ ColumnLayout {
 
         Layout.fillWidth: true
         Layout.preferredWidth: root.width
-        height: 20
+        Layout.preferredHeight: 24
 
         onLoginClicked: {
             root.loginClicked();
@@ -28,54 +28,28 @@ ColumnLayout {
         onProfileClicked: {
             root.profileClicked();
         }
+
+        onBurgerButtonClicked: {
+            if (topBar.burgerButton.state === "open") {
+                topBar.burgerButton.state = "closed";
+                profileInfo.visible = false;
+                return;
+            }
+
+            topBar.burgerButton.state= "open";
+            profileInfo.visible = true;
+        }
     }
+
 
     Row {
         ColumnLayout {
             Layout.fillHeight: true
             Layout.alignment: Qt.AlignTop
 
-            Item {
-                Layout.fillWidth: true
-                Layout.preferredHeight: 40
-
-                RowLayout {
-                    width: parent.width
-                    height: parent.height
-
-                    Item {
-                        id: whiteSpaceFiller
-
-                        Layout.alignment: Qt.AlignLeft
-                        Layout.preferredHeight: parent.height
-                        Layout.preferredWidth: ( parent.width * 2) / 3
-                    }
-
-                    BurgerButton {
-                        id: bb
-
-                        Layout.alignment: Qt.AlignRight
-                    }
-                }
-
-                MouseArea {
-                    anchors.fill: parent
-
-                    onClicked: {
-                        if (bb.state === "menu") {
-                            bb.state = "back";
-                            whiteSpaceFiller.visible = false;
-
-                            return;
-                        }
-
-                        bb.state= "menu";
-                        whiteSpaceFiller.visible = true;
-                    }
-                }
-            }
-
             ProfilePage {
+                id: profileInfo
+
                 Layout.fillHeight: true
                 Layout.fillWidth: true
                 Layout.leftMargin: 3

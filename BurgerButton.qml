@@ -5,8 +5,7 @@ Item {
 
     property int animationDuration: 350
 
-    width: 24
-    height: 24
+    signal clicked();
 
     Rectangle {
         id: bar1
@@ -41,14 +40,14 @@ Item {
         antialiasing: true
     }
 
-    state: "menu"
+    state: "open"
     states: [
         State {
-            name: "menu"
+            name: "closed"
         },
 
         State {
-            name: "back"
+            name: "open"
 
             PropertyChanges {
                 target: bar1
@@ -101,7 +100,14 @@ Item {
                 duration: root.animationDuration
                 easing.type: Easing.InOutQuad
             }
-
         }
     ]
+
+    MouseArea {
+        anchors.fill: root
+
+        onClicked: {
+            root.clicked();
+        }
+    }
 }

@@ -9,9 +9,6 @@ ColumnLayout {
 
     property alias pic: img
 
-    signal hideInfo();
-    signal showInfo();
-
     ProfileImage {
         id: img
 
@@ -38,17 +35,5 @@ ColumnLayout {
 
         text: "pfp: " + User.pfpLink
     }   
-
-    onHideInfo: {
-        username.visible = false;
-        email.visible = false;
-        pfpLink.visible = false;
-    }
-
-    onShowInfo: {
-        username.visible = true;
-        email.visible = true;
-        pfpLink.visible = true;
-    }
 }
 
