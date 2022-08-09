@@ -68,7 +68,7 @@ bool Client::send(int command, const QByteArray& data)
     return true;
 }
 
-int Client::readCommand(QDataStream &stream)
+int Client::readCommand(QDataStream& stream)
 {
     int command = 0;
     stream >> command;
@@ -76,7 +76,7 @@ int Client::readCommand(QDataStream &stream)
     return command;
 }
 
-QTcpSocket *Client::getSocket() const
+QTcpSocket* Client::getSocket() const
 {
     return m_socket;
 }
@@ -139,10 +139,10 @@ void Client::handleData(const QByteArray& arr)
     }
     case Protocol::Server::SV_JOINED_SUCCESSFULLY: {
         //TODO
-        QByteArray arr;
-        QDataStream stream(arr);
-        stream >> arr;
-        auto room = Room::deserialise(arr);
+        QByteArray roomData;
+        stream >> roomData;
+        //TODO deserialisation or serialization fails.
+        auto room = Room::deserialise(roomData);
 
         if (room.id() == -1) {
             qDebug() << "failed to join";

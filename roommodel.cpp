@@ -57,6 +57,13 @@ QVariant RoomModel::data(const QModelIndex& index, int role) const
 void RoomModel::updateRoom(const Room& newRoom)
 {
     auto room = findRoomById(newRoom.id());
+
+    if (!room) {
+        qDebug() << "unable to find room";
+
+        return;
+    }
+
     room->setName(newRoom.name());
     room->setStatus(newRoom.status());
     room->setAccess(newRoom.access());

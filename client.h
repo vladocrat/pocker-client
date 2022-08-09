@@ -48,7 +48,7 @@ private:
     Client(Client&&) = delete;
     Client& operator=(const Client&) = delete;
 
-    void handleData(const QByteArray&);
+    void handleData(const QByteArray& arr);
     bool checkConnection();
 
     const int port = 8082;

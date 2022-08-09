@@ -13,7 +13,6 @@
 #include "room.h"
 #include "controllers/logincontroller.h"
 #include "controllers/modelcontroller.h"
-#include "protocol.h"
 
 int main(int argc, char *argv[])
 {
