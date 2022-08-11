@@ -5,6 +5,7 @@ import QtGraphicalEffects 1.12
 import RoomModel 1.0
 import Client 1.0
 import Globals 1.0
+import RoomController 1.0
 
 Rectangle {
     id: root
@@ -214,7 +215,7 @@ Rectangle {
 
             onClicked: {
                 //TODO for testing
-                Client.send(18, 0);
+                RoomController.joinRoom(root.roomIndex);
             }
         }
     }

@@ -67,8 +67,10 @@ void RoomModel::updateRoom(const Room& newRoom)
     room->setName(newRoom.name());
     room->setStatus(newRoom.status());
     room->setAccess(newRoom.access());
-    room->setInitialBet(newRoom.access());
+    room->setInitialBet(newRoom.initialBet());
     room->setPlayerCount(newRoom.playerCount());
+    auto roomIx = index(newRoom.id(), 0);
+    emit dataChanged(roomIx, roomIx);
 }
 
 QHash<int, QByteArray> RoomModel::roleNames() const

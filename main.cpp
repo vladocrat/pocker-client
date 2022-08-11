@@ -10,9 +10,9 @@
 #include "user.h"
 #include "Pages.h"
 #include "roommodel.h"
-#include "room.h"
 #include "controllers/logincontroller.h"
 #include "controllers/modelcontroller.h"
+#include "controllers/roomcontroller.h"
 
 int main(int argc, char *argv[])
 {
@@ -26,6 +26,7 @@ int main(int argc, char *argv[])
 
     LoginController::registerType();
     ModelController::registerType();
+    RoomController::registerType();
 
     qmlRegisterSingletonType(QUrl("qrc:/Globals.qml"), "Globals", 1, 0, "Globals");
 
