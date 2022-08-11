@@ -15,7 +15,7 @@ ColumnLayout {
         Layout.alignment: Qt.AlignHCenter
         Layout.preferredWidth: 40
         Layout.preferredHeight: 40
-        source: "file:///C:/Users/sherlock/Desktop/img.jpg"
+        source: "images/arrows.png"
     }
 
     Text {

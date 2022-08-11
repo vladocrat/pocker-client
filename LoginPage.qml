@@ -102,7 +102,7 @@ Image {
                 Layout.fillWidth: true
                 height: password.height
                 text: "Log In"
-                iconSource: "file:///C:/image/arrows.png"
+                iconSource: "images/arrows.png"
 
                 onClicked: {
                     if ((login.text.length < 3 || login.text.length === 0) &&

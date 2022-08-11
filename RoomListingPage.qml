@@ -41,19 +41,14 @@ ColumnLayout {
         }
     }
 
+    RowLayout {
+        ProfilePage {
+            id: profileInfo
 
-    Row {
-        ColumnLayout {
-            Layout.fillHeight: true
             Layout.alignment: Qt.AlignTop
-
-            ProfilePage {
-                id: profileInfo
-
-                Layout.fillHeight: true
-                Layout.fillWidth: true
-                Layout.leftMargin: 3
-            }
+            Layout.fillHeight: true
+            Layout.fillWidth: true
+            Layout.leftMargin: 3
         }
 
         GridView {
