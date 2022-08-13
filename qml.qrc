@@ -18,5 +18,8 @@
         <file>CustomToggleButton.qml</file>
         <file>images/lock.png</file>
         <file>images/unlock.png</file>
+        <file>ProfileImage.qml</file>
+        <file>BurgerButton.qml</file>
+        <file>images/arrows.png</file>
     </qresource>
 </RCC>

@@ -3,19 +3,21 @@ import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.12
 import Client 1.0
 
-Item {
+ColumnLayout {
     id: root
 
     signal loginClicked();
     signal registrationClicked();
     signal profileClicked();
 
+    property int footerSize: 5
+
     TopBar {
         id: topBar
 
-        anchors.top: root.top
-        width: root.width
-        height: 20
+        Layout.fillWidth: true
+        Layout.preferredWidth: root.width
+        Layout.preferredHeight: 40
 
         onLoginClicked: {
             root.loginClicked();
@@ -28,25 +30,28 @@ Item {
         onProfileClicked: {
             root.profileClicked();
         }
+
+        onBurgerButtonClicked: {
+            if (topBar.burgerButton.state === "open") {
+                topBar.burgerButton.state = "closed";
+                profileInfo.visible = false;
+                return;
+            }
+
+            topBar.burgerButton.state= "open";
+            profileInfo.visible = true;
+        }
     }
 
     RowLayout {
-
-        spacing: 50
-
-        anchors{
-            top: topBar.bottom
-            right: root.right
-            left: root.left
-            bottom: root.bottom
-            topMargin: 10
-        }
-
         ProfilePage {
+            id: profileInfo
+
+            Layout.alignment: Qt.AlignTop
             Layout.fillHeight: true
             Layout.fillWidth: true
-            Layout.leftMargin: 2
-            Layout.alignment: Qt.AlignTop
+            Layout.leftMargin: 3
+            Layout.bottomMargin: root.footerSize
         }
 
         GridView {
@@ -54,6 +59,8 @@ Item {
 
             Layout.fillHeight: true
             Layout.fillWidth: true
+            Layout.rightMargin: 3
+            Layout.bottomMargin: root.footerSize
             clip: true
             cellWidth: 240
             cellHeight: 120
@@ -74,3 +81,4 @@ Item {
         }
     }
 }
+

@@ -6,7 +6,7 @@ import Globals 1.0
 import LoginController 1.0
 import Client 1.0
 
-Image {
+Page {
     id: root
 
     signal registrationRequired();
@@ -102,7 +102,7 @@ Image {
                 Layout.fillWidth: true
                 height: password.height
                 text: "Log In"
-                iconSource: "file:///C:/image/arrows.png"
+                iconSource: "images/arrows.png"
 
                 onClicked: {
                     if ((login.text.length < 3 || login.text.length === 0) &&
