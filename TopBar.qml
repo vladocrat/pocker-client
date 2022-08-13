@@ -7,21 +7,36 @@ Rectangle {
 
     border.width: 1
 
+    property alias burgerButton: bb
+
     signal loginClicked();
     signal registrationClicked();
     signal profileClicked();
+    signal burgerButtonClicked();
 
     RowLayout {
         anchors.fill: parent
 
+        BurgerButton {
+            id: bb
+
+            Layout.alignment: Qt.AlignRight
+            Layout.preferredWidth: 24
+            Layout.preferredHeight: 24
+
+            onClicked: {
+                root.burgerButtonClicked();
+            }
+        }
+
         Item {
-            width: 20
-            height: 20
+           Layout.preferredWidth: 20
+           Layout.preferredHeight: 24
         }
 
         HyperLink {
-            width: 40
-            height: 20
+            Layout.preferredWidth: 40
+            Layout.preferredHeight: 24
             hyperLinkText.text: "login"
 
             onClicked: {
@@ -30,8 +45,8 @@ Rectangle {
         }
 
         HyperLink {
-            width: 40
-            height: 20
+            Layout.preferredWidth: 40
+            Layout.preferredHeight: 24
             hyperLinkText.text: "add room"
 
             onClicked: {
@@ -40,8 +55,8 @@ Rectangle {
         }
 
         HyperLink {
-            width: 40
-            height: 20
+            Layout.preferredWidth: 40
+            Layout.preferredHeight: 24
             hyperLinkText.text: "registration"
 
             onClicked: {
@@ -50,14 +65,13 @@ Rectangle {
         }
 
         HyperLink {
-            width: 40
-            height: 20
+            Layout.preferredWidth: 40
+            Layout.preferredHeight: 24
             hyperLinkText.text: "profile"
 
             onClicked: {
                 root.profileClicked();
             }
         }
-
     }
 }
