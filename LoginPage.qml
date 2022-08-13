@@ -6,7 +6,7 @@ import Globals 1.0
 import LoginController 1.0
 import Client 1.0
 
-Image {
+Page {
     id: root
 
     signal registrationRequired();

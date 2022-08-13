@@ -10,12 +10,14 @@ ColumnLayout {
     signal registrationClicked();
     signal profileClicked();
 
+    property int footerSize: 5
+
     TopBar {
         id: topBar
 
         Layout.fillWidth: true
         Layout.preferredWidth: root.width
-        Layout.preferredHeight: 24
+        Layout.preferredHeight: 40
 
         onLoginClicked: {
             root.loginClicked();
@@ -49,6 +51,7 @@ ColumnLayout {
             Layout.fillHeight: true
             Layout.fillWidth: true
             Layout.leftMargin: 3
+            Layout.bottomMargin: root.footerSize
         }
 
         GridView {
@@ -56,6 +59,8 @@ ColumnLayout {
 
             Layout.fillHeight: true
             Layout.fillWidth: true
+            Layout.rightMargin: 3
+            Layout.bottomMargin: root.footerSize
             clip: true
             cellWidth: 240
             cellHeight: 120
