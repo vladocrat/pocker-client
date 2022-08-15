@@ -2,22 +2,23 @@ import QtQuick 2.0
 import QtQuick.Layouts 1.12
 import QtQuick.Controls 2.12
 import Client 1.0
+import Globals 1.0
 
-ColumnLayout {
+Page {
     id: root
 
     signal loginClicked();
     signal registrationClicked();
     signal profileClicked();
 
+    //TODO might wanna remove bottom margin
     property int footerSize: 5
 
-    TopBar {
+    header: TopBar {
         id: topBar
 
-        Layout.fillWidth: true
-        Layout.preferredWidth: root.width
-        Layout.preferredHeight: 40
+        width: root.width
+        height: 40
 
         onLoginClicked: {
             root.loginClicked();
@@ -43,7 +44,17 @@ ColumnLayout {
         }
     }
 
+    Rectangle {
+        anchors.fill: parent
+        color: Globals.themeColor
+    }
+
     RowLayout {
+        anchors {
+            fill: parent
+            topMargin: 3
+        }
+
         ProfilePage {
             id: profileInfo
 
@@ -51,6 +62,7 @@ ColumnLayout {
             Layout.fillHeight: true
             Layout.fillWidth: true
             Layout.leftMargin: 3
+            //Layout.topMargin: 3
             Layout.bottomMargin: root.footerSize
         }
 

@@ -43,36 +43,33 @@ Rectangle {
         initialItem: firstScreen
 
         pushEnter: Transition {
-
-                PropertyAnimation {
-                    target: secondScreen
-                    property: "height"
-                    from: 0
-                    to: root.height
-                    duration: internal.secondScreenAnimDuration
-                }
-
+            PropertyAnimation {
+                target: secondScreen
+                property: "height"
+                from: 0
+                to: root.height
+                duration: internal.secondScreenAnimDuration
+            }
         }
 
         pushExit: Transition {
-                PropertyAnimation {
-                    target: secondScreen
-                    property: "height"
-                    from: 0
-                    to: root.height
-                    duration: internal.secondScreenAnimDuration
-                }
+            PropertyAnimation {
+                target: secondScreen
+                property: "height"
+                from: 0
+                to: root.height
+                duration: internal.secondScreenAnimDuration
+            }
         }
 
         popEnter: Transition {
-
-                PropertyAnimation {
-                    target: secondScreen
-                    property: "height"
-                    from: root.height
-                    to: 0
-                    duration: internal.secondScreenAnimDuration
-                }
+            PropertyAnimation {
+                target: secondScreen
+                property: "height"
+                from: root.height
+                to: 0
+                duration: internal.secondScreenAnimDuration
+            }
 
         }
 
@@ -214,7 +211,6 @@ Rectangle {
             }
 
             onClicked: {
-                //TODO for testing
                 RoomController.joinRoom(root.roomIndex);
             }
         }

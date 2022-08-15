@@ -8,6 +8,7 @@ ColumnLayout {
     id: root
 
     property alias pic: img
+    property string textColor: "white"
 
     ProfileImage {
         id: img
@@ -22,18 +23,21 @@ ColumnLayout {
         id: username
 
         text: "Username: " + User.name
+        color: root.textColor
     }
 
     Text {
         id: email
 
         text: "email: " + User.email
+        color: root.textColor
     }
 
     Text {
         id: pfpLink
 
         text: "pfp: " + User.pfpLink
-    }   
+        color: root.textColor
+    }
 }
 
