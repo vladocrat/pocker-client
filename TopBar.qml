@@ -1,11 +1,10 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.12
 import RoomModel 1.0
+import Globals 1.0
 
 Rectangle {
     id: root
-
-    border.width: 1
 
     property alias burgerButton: bb
 
@@ -13,6 +12,9 @@ Rectangle {
     signal registrationClicked();
     signal profileClicked();
     signal burgerButtonClicked();
+
+    color: Globals.mainColor
+    border.width: 1
 
     RowLayout {
         anchors.fill: parent

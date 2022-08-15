@@ -38,8 +38,13 @@ ApplicationWindow {
             spacing: 0
             anchors.right: windowToolBar.right
 
+            Item {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+            }
+
             TopBarButton {
-                Layout.preferredWidth: 35
+                Layout.preferredWidth: 40
                 Layout.preferredHeight: controlBtns.height
                 btnText {
                     text: "-"
@@ -55,7 +60,7 @@ ApplicationWindow {
             }
 
             TopBarButton {
-                Layout.preferredWidth: 35
+                Layout.preferredWidth: 40
                 Layout.preferredHeight: controlBtns.height
                 btnText.text: root.Maximized ? "🗗" : "🗖"
 
@@ -65,7 +70,7 @@ ApplicationWindow {
             }
 
             TopBarButton {
-                Layout.preferredWidth: 35
+                Layout.preferredWidth: 40
                 Layout.preferredHeight: controlBtns.height
                 btnText.text: "🗙"
 
