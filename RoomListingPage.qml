@@ -58,12 +58,9 @@ Page {
         ProfilePage {
             id: profileInfo
 
-            Layout.alignment: Qt.AlignTop
-            Layout.fillHeight: true
-            Layout.fillWidth: true
             Layout.leftMargin: 3
-            //Layout.topMargin: 3
-            Layout.bottomMargin: root.footerSize
+            Layout.fillHeight: true
+            Layout.preferredWidth: root.width / 4.5
         }
 
         GridView {

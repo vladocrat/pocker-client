@@ -9,12 +9,122 @@ import Page 1.0
 Window {
     id: root
 
-    property int resizeBarWidth: 5 //TODO rename
+    property int resizeBarWidth: 5
 
     width: 840
     height: 480
     visible: true
     flags: Qt.FramelessWindowHint
+
+    Rectangle {
+        id: windowToolBar
+
+        height: 25
+        width: root.width
+        color: Globals.topBarColor
+
+        Text {
+            text: "pocker"
+            color: Globals.whiteToneColor
+            anchors.centerIn: windowToolBar
+            font {
+                family: Globals.fontFamily
+                bold: true
+            }
+        }
+
+        RowLayout {
+            id: controlBtns
+
+            property int buttonsWidth: 40
+
+            width: windowToolBar.width / 5
+            height: windowToolBar.height
+            spacing: 0
+            anchors.right: windowToolBar.right
+
+            Item {
+                Layout.fillWidth: true
+                Layout.fillHeight: true
+            }
+
+            TopBarButton {
+                id: minimizeBtn
+
+                Layout.preferredWidth: controlBtns.buttonsWidth
+                Layout.preferredHeight: controlBtns.height
+                hoverEnabled: true
+                btnText {
+                    text: "-"
+                    font {
+                        pointSize: 17
+                        bold: true
+                    }
+                }
+
+                onHoveredChanged: {
+                    if (minimizeBtn.hovered) {
+                        btnText.color = Globals.whiteHoverColor
+                    } else {
+                        btnText.color = Globals.whiteToneColor
+                    }
+                }
+
+                onClicked: {
+                    root.showMinimized();
+                }
+            }
+
+            TopBarButton {
+                id: maximizeBtn
+
+                Layout.preferredWidth: controlBtns.buttonsWidth
+                Layout.preferredHeight: controlBtns.height
+                hoverEnabled: true
+                btnText {
+                    //TODO create enum with window states.
+                    text: root.Maximized ? "🗗" : "🗖"
+                    color: Globals.whiteToneColor
+                }
+
+                onHoveredChanged: {
+                    if (maximizeBtn.hovered) {
+                        btnText.color = Globals.whiteHoverColor
+                    } else {
+                        btnText.color = Globals.whiteToneColor
+                    }
+                }
+
+                onClicked: {
+                    root.showMaximized();
+                }
+            }
+
+            TopBarButton {
+                id: closeBtn
+
+                Layout.preferredWidth: controlBtns.buttonsWidth
+                Layout.preferredHeight: controlBtns.height
+                hoverEnabled: true
+                btnText {
+                    color: Globals.whiteToneColor
+                    text: "🗙"
+                }
+
+                onHoveredChanged: {
+                    if (closeBtn.hovered) {
+                        btnText.color = "red"
+                    } else {
+                        btnText.color = Globals.whiteToneColor
+                    }
+                }
+
+                onClicked: {
+                    root.close();
+                }
+            }
+        }
+    }
 
     MouseArea {
         id: dragArea
@@ -38,77 +148,6 @@ Window {
 
         onMouseYChanged: {
             root.y += (dragArea.mouseY - dragArea.lastMouseY)
-        }
-    }
-
-    Rectangle {
-        id: windowToolBar
-
-        height: 20
-        width: root.width
-        color: Globals.topBarColor
-
-        Text {
-            text: "pocker"
-            color: Globals.whiteToneColor
-            font.family: Globals.fontFamily
-            anchors.horizontalCenter: windowToolBar.horizontalCenter
-        }
-
-        RowLayout {
-            id: controlBtns
-
-            width: windowToolBar.width / 5
-            height: windowToolBar.height
-            spacing: 0
-            anchors.right: windowToolBar.right
-
-            Item {
-                Layout.fillWidth: true
-                Layout.fillHeight: true
-            }
-
-            TopBarButton {
-                Layout.preferredWidth: 40
-                Layout.preferredHeight: controlBtns.height
-                btnText {
-                    text: "-"
-                    font {
-                        pointSize: 17
-                        bold: true
-                    }
-                }
-
-                onClicked: {
-                    root.showMinimized();
-                }
-            }
-
-            TopBarButton {
-                Layout.preferredWidth: 40
-                Layout.preferredHeight: controlBtns.height
-                btnText {
-                    text: root.Maximized ? "🗗" : "🗖"
-                    color: Globals.whiteToneColor
-                }
-
-                onClicked: {
-                    root.showMaximized();
-                }
-            }
-
-            TopBarButton {
-                Layout.preferredWidth: 40
-                Layout.preferredHeight: controlBtns.height
-                btnText {
-                    color: Globals.whiteToneColor
-                    text: "🗙"
-                }
-
-                onClicked: {
-                    root.close();
-                }
-            }
         }
     }
 
@@ -178,7 +217,7 @@ Window {
 
                 onLoginFailed: {
                     err.text = msg;
-                    layout.currentIndex = 3;// show err
+                    layout.currentIndex = 3;//TODO show err
                 }
 
                 onRegistrationRequired:  {
@@ -199,7 +238,7 @@ Window {
 
                 onRegistrationFailed: {
                     err.text = msg;
-                    layout.currentIndex = 3;// show err
+                    layout.currentIndex = 3;//TODO show err
                 }
 
                 onLoginRequired: {
@@ -226,5 +265,3 @@ Window {
         }
     }
 }
-
-

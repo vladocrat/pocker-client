@@ -7,4 +7,5 @@ QtObject {
     property string themeColor: "#5666ba"
     property string topBarColor: "#273dab"
     property string whiteToneColor: "#e4e9f2"
+    property string whiteHoverColor: "#9499a1"
 }

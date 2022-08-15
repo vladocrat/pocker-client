@@ -66,7 +66,8 @@ Item {
             PropertyChanges {
                 target: bar2
                 rotation: 45
-                visible: false
+                y: bar2.y
+                x: bar2.x
             }
         }
     ]
