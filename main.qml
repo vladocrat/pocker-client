@@ -19,7 +19,7 @@ ApplicationWindow {
     Rectangle {
         id: windowToolBar
 
-        height: 15
+        height: 20
         width: root.width
         color: Globals.topBarColor
 
@@ -27,13 +27,58 @@ ApplicationWindow {
             text: "pocker"
             color: "white"
             font.family: Globals.fontFamily
-            anchors.horizontalCenter: parent.horizontalCenter
+            anchors.horizontalCenter: windowToolBar.horizontalCenter
+        }
+
+        RowLayout {
+            id: controlBtns
+
+            width: windowToolBar.width / 5
+            height: windowToolBar.height
+            spacing: 0
+            anchors.right: windowToolBar.right
+
+            TopBarButton {
+                Layout.preferredWidth: 35
+                Layout.preferredHeight: controlBtns.height
+                btnText {
+                    text: "-"
+                    font {
+                        pointSize: 17
+                        bold: true
+                    }
+                }
+
+                onClicked: {
+                    root.showMinimized();
+                }
+            }
+
+            TopBarButton {
+                Layout.preferredWidth: 35
+                Layout.preferredHeight: controlBtns.height
+                btnText.text: root.Maximized ? "🗗" : "🗖"
+
+                onClicked: {
+                    root.showMaximized();
+                }
+            }
+
+            TopBarButton {
+                Layout.preferredWidth: 35
+                Layout.preferredHeight: controlBtns.height
+                btnText.text: "🗙"
+
+                onClicked: {
+                    root.close();
+                }
+            }
         }
     }
 
     RowLayout {
         width: root.width
-        height: windowToolBar.height
+        height: windowToolBar.height / 6
 
         MouseArea {
             Layout.fillHeight: true
