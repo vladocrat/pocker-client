@@ -6,15 +6,40 @@ import Client 1.0
 import Globals 1.0
 import Page 1.0
 
-ApplicationWindow {
+Window {
     id: root
 
-    property int topLeftResizeBarWidth: 5 //TODO rename
+    property int resizeBarWidth: 5 //TODO rename
 
     width: 840
     height: 480
     visible: true
     flags: Qt.FramelessWindowHint
+
+    MouseArea {
+        id: dragArea
+
+        property real lastMouseX: 0
+        property real lastMouseY: 0
+
+        width: windowToolBar.width - controlBtns.width
+        height: windowToolBar.height - root.resizeBarWidth
+        anchors.bottom: windowToolBar.bottom
+
+        //TODO if fullscreen, shrink the window (look at windows impl)
+        onPressed: {
+            dragArea.lastMouseX = dragArea.mouseX
+            dragArea.lastMouseY = dragArea.mouseY
+        }
+
+        onMouseXChanged: {
+            root.x += (dragArea.mouseX - dragArea.lastMouseX)
+        }
+
+        onMouseYChanged: {
+            root.y += (dragArea.mouseY - dragArea.lastMouseY)
+        }
+    }
 
     Rectangle {
         id: windowToolBar
@@ -25,7 +50,7 @@ ApplicationWindow {
 
         Text {
             text: "pocker"
-            color: "white"
+            color: Globals.whiteToneColor
             font.family: Globals.fontFamily
             anchors.horizontalCenter: windowToolBar.horizontalCenter
         }
@@ -62,7 +87,10 @@ ApplicationWindow {
             TopBarButton {
                 Layout.preferredWidth: 40
                 Layout.preferredHeight: controlBtns.height
-                btnText.text: root.Maximized ? "🗗" : "🗖"
+                btnText {
+                    text: root.Maximized ? "🗗" : "🗖"
+                    color: Globals.whiteToneColor
+                }
 
                 onClicked: {
                     root.showMaximized();
@@ -72,7 +100,10 @@ ApplicationWindow {
             TopBarButton {
                 Layout.preferredWidth: 40
                 Layout.preferredHeight: controlBtns.height
-                btnText.text: "🗙"
+                btnText {
+                    color: Globals.whiteToneColor
+                    text: "🗙"
+                }
 
                 onClicked: {
                     root.close();
@@ -83,11 +114,11 @@ ApplicationWindow {
 
     RowLayout {
         width: root.width
-        height: windowToolBar.height / 6
+        height: windowToolBar.height / 8
 
         MouseArea {
             Layout.fillHeight: true
-            Layout.preferredWidth: root.topLeftResizeBarWidth
+            Layout.preferredWidth: root.resizeBarWidth
             cursorShape: Qt.SizeFDiagCursor
 
             onPressed: {
@@ -107,7 +138,7 @@ ApplicationWindow {
 
         MouseArea {
             Layout.fillHeight: true
-            Layout.preferredWidth: root.topLeftResizeBarWidth
+            Layout.preferredWidth: root.resizeBarWidth
             cursorShape: Qt.SizeBDiagCursor
 
             onPressed: {
