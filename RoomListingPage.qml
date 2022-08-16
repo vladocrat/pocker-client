@@ -12,9 +12,6 @@ Page {
     signal registrationClicked();
     signal profileClicked();
 
-    //TODO might wanna remove bottom margin
-    property int footerSize: 5
-
     header: TopBar {
         id: topBar
 
@@ -59,6 +56,7 @@ Page {
 
             Layout.fillHeight: true
             Layout.preferredWidth: root.width / 4.5
+            visible: false
         }
 
         Item {

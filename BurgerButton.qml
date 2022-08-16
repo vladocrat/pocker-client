@@ -40,7 +40,7 @@ Item {
         antialiasing: true
     }
 
-    state: "open"
+    state: "closed"
     states: [
         State {
             name: "closed"

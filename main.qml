@@ -14,7 +14,8 @@ Window {
     width: 840
     height: 480
     visible: true
-    flags: Qt.FramelessWindowHint
+    flags: Qt.FramelessWindowHint | Qt.Window
+
 
     Rectangle {
         id: windowToolBar
@@ -41,7 +42,10 @@ Window {
             width: windowToolBar.width / 5
             height: windowToolBar.height
             spacing: 0
-            anchors.right: windowToolBar.right
+            anchors {
+                right: windowToolBar.right
+                rightMargin: root.resizeBarWidth
+            }
 
             Item {
                 Layout.fillWidth: true
@@ -129,29 +133,19 @@ Window {
     MouseArea {
         id: dragArea
 
-        property real lastMouseX: 0
-        property real lastMouseY: 0
-
         width: windowToolBar.width - controlBtns.width
         height: windowToolBar.height - root.resizeBarWidth
         anchors.bottom: windowToolBar.bottom
 
         //TODO if fullscreen, shrink the window (look at windows impl)
         onPressed: {
-            dragArea.lastMouseX = dragArea.mouseX
-            dragArea.lastMouseY = dragArea.mouseY
-        }
-
-        onMouseXChanged: {
-            root.x += (dragArea.mouseX - dragArea.lastMouseX)
-        }
-
-        onMouseYChanged: {
-            root.y += (dragArea.mouseY - dragArea.lastMouseY)
+            root.startSystemMove();
         }
     }
 
     RowLayout {
+        id: resizeArea
+
         width: root.width
         height: windowToolBar.height / 8
 
