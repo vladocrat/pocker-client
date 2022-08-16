@@ -10,12 +10,12 @@ Window {
     id: root
 
     property int resizeBarWidth: 5
+    property bool maximized: false
 
     width: 840
     height: 480
     visible: true
     flags: Qt.FramelessWindowHint | Qt.Window
-
 
     Rectangle {
         id: windowToolBar
@@ -76,6 +76,7 @@ Window {
 
                 onClicked: {
                     root.showMinimized();
+                    root.maximised = false;
                 }
             }
 
@@ -86,8 +87,7 @@ Window {
                 Layout.preferredHeight: controlBtns.height
                 hoverEnabled: true
                 btnText {
-                    //TODO create enum with window states.
-                    text: root.Maximized ? "🗗" : "🗖"
+                    text: root.maximized ? "🗗" : "🗖"
                     color: Globals.whiteToneColor
                 }
 
@@ -100,7 +100,13 @@ Window {
                 }
 
                 onClicked: {
-                    root.showMaximized();
+                    if (!root.maximized) {
+                        root.showMaximized();
+                        root.maximized = true;
+                    } else {
+                        root.showNormal();
+                        root.maximized = false;
+                    }
                 }
             }
 
@@ -137,9 +143,18 @@ Window {
         height: windowToolBar.height - root.resizeBarWidth
         anchors.bottom: windowToolBar.bottom
 
-        //TODO if fullscreen, shrink the window (look at windows impl)
         onPressed: {
             root.startSystemMove();
+        }
+
+        onDoubleClicked: {
+            if (root.maximized) {
+                root.showNormal();
+                root.maximized = false;
+            } else {
+                root.showMaximized();
+                root.maximized = true;
+            }
         }
     }
 
