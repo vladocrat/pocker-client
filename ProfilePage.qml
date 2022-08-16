@@ -1,6 +1,7 @@
 import QtQuick 2.0
 import QtQuick.Layouts 1.15
 import QtQuick.Controls 2.15
+import QtGraphicalEffects 1.12
 import User 1.0
 import Client 1.0
 import Globals 1.0
@@ -13,11 +14,12 @@ Rectangle {
     property string textColor: Globals.whiteToneColor
 
     color: "transparent"
-    border.width: 1
 
     ColumnLayout {
-        width: parent.width
-        height: parent.height / 2.5
+        anchors {
+            fill: parent
+            topMargin: 10
+        }
 
         ProfileImage {
             id: img
@@ -34,6 +36,10 @@ Rectangle {
             Layout.alignment: Qt.AlignHCenter
             text: "Username: " + User.name
             color: root.textColor
+            font {
+                family: Globals.fontFamily
+                pointSize: 10
+            }
         }
 
         Text {
@@ -42,7 +48,18 @@ Rectangle {
             Layout.alignment: Qt.AlignHCenter
             text: "email: " + User.email
             color: root.textColor
+            font {
+                family: Globals.fontFamily
+                pointSize: 10
+            }
+        }
+
+        Item {
+            Layout.alignment: Qt.AlignHCenter
+            Layout.fillHeight: true
+            Layout.fillWidth: true
         }
     }
 }
+
 
