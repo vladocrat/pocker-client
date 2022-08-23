@@ -1,5 +1,6 @@
 import QtQuick 2.0
 import QtQuick.Controls 2.0
+import Globals 1.0
 
 Rectangle {
     id: root
@@ -13,6 +14,7 @@ Rectangle {
     Text {
         anchors.centerIn: parent
         text: root.text
+        font.family: Globals.fontFamily
     }
 
     MouseArea {
