@@ -25,6 +25,19 @@ Rectangle {
             root.clicked();
         }
 
+        onPressed: {
+            root.color = "#8c9c98";
+        }
+
+        onReleased: {
+            if (mouseArea.containsMouse) {
+                mouseArea.cursorShape = Qt.PointingHandCursor;
+                root.color = "#b9c7c4";
+            } else {
+                root.color = "transparent";
+            }
+        }
+
         onHoveredChanged:  {
             if (mouseArea.containsMouse) {
                 mouseArea.cursorShape = Qt.PointingHandCursor;

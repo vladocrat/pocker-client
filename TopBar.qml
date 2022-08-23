@@ -27,9 +27,9 @@ Rectangle {
         BurgerButton {
             id: bb
 
+            Layout.preferredWidth: 30
+            Layout.preferredHeight: 24
             Layout.alignment: Qt.AlignCenter
-            Layout.preferredWidth: mainRow.buttonWidth
-            Layout.preferredHeight: mainRow.buttonHeight
 
             onClicked: {
                 root.burgerButtonClicked();
@@ -37,7 +37,7 @@ Rectangle {
         }
 
         Item {
-            Layout.preferredWidth: mainRow.buttonWidth
+            Layout.preferredWidth: mainRow.buttonWidth - 6
             Layout.preferredHeight: mainRow.buttonHeight
         }
 
