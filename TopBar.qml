@@ -17,14 +17,19 @@ Rectangle {
     border.width: 1
 
     RowLayout {
+        id: mainRow
+
+        property real buttonHeight: root.height - 5
+        property real buttonWidth: 65
+
         anchors.fill: parent
 
         BurgerButton {
             id: bb
 
-            Layout.alignment: Qt.AlignRight
-            Layout.preferredWidth: 24
-            Layout.preferredHeight: 24
+            Layout.alignment: Qt.AlignCenter
+            Layout.preferredWidth: mainRow.buttonWidth
+            Layout.preferredHeight: mainRow.buttonHeight
 
             onClicked: {
                 root.burgerButtonClicked();
@@ -32,44 +37,44 @@ Rectangle {
         }
 
         Item {
-           Layout.preferredWidth: 20
-           Layout.preferredHeight: 24
+            Layout.preferredWidth: mainRow.buttonWidth
+            Layout.preferredHeight: mainRow.buttonHeight
         }
 
-        HyperLink {
-            Layout.preferredWidth: 40
-            Layout.preferredHeight: 24
-            hyperLinkText.text: "login"
+        CustomButton {
+            Layout.preferredWidth: mainRow.buttonWidth
+            Layout.preferredHeight: mainRow.buttonHeight
+            text: "login"
 
             onClicked: {
                 root.loginClicked();
             }
         }
 
-        HyperLink {
-            Layout.preferredWidth: 40
-            Layout.preferredHeight: 24
-            hyperLinkText.text: "add room"
+        CustomButton {
+            Layout.preferredWidth: mainRow.buttonWidth
+            Layout.preferredHeight: mainRow.buttonHeight
+            text: "add room"
 
             onClicked: {
                 form.open();
             }
         }
 
-        HyperLink {
-            Layout.preferredWidth: 40
-            Layout.preferredHeight: 24
-            hyperLinkText.text: "registration"
+        CustomButton {
+            Layout.preferredWidth: mainRow.buttonWidth
+            Layout.preferredHeight: mainRow.buttonHeight
+            text: "registration"
 
             onClicked: {
                 root.registrationClicked();
             }
         }
 
-        HyperLink {
-            Layout.preferredWidth: 40
-            Layout.preferredHeight: 24
-            hyperLinkText.text: "profile"
+        CustomButton {
+            Layout.preferredWidth: mainRow.buttonWidth
+            Layout.preferredHeight: mainRow.buttonHeight
+            text: "profile"
 
             onClicked: {
                 root.profileClicked();

@@ -22,5 +22,6 @@
         <file>BurgerButton.qml</file>
         <file>images/arrows.png</file>
         <file>TopBarButton.qml</file>
+        <file>CustomButton.qml</file>
     </qresource>
 </RCC>
