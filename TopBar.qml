@@ -37,7 +37,7 @@ Rectangle {
         }
 
         Item {
-            Layout.preferredWidth: mainRow.buttonWidth - 6
+            Layout.preferredWidth: mainRow.buttonWidth - 6 - 10
             Layout.preferredHeight: mainRow.buttonHeight
         }
 
@@ -62,7 +62,7 @@ Rectangle {
         }
 
         CustomButton {
-            Layout.preferredWidth: mainRow.buttonWidth
+            Layout.preferredWidth: mainRow.buttonWidth + 25
             Layout.preferredHeight: mainRow.buttonHeight
             text: "registration"
 
