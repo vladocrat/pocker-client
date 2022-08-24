@@ -82,6 +82,7 @@ Page {
             GridView {
                 id: gridView
 
+                anchors.leftMargin: 5
                 anchors.fill: parent
                 clip: true
                 cellWidth: 240

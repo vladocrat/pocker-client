@@ -76,7 +76,7 @@ Window {
 
                 onClicked: {
                     root.showMinimized();
-                    root.maximised = false;
+                    root.maximized = false;
                 }
             }
 
@@ -261,6 +261,10 @@ Window {
 
                 onLoginClicked: {
                     layout.currentIndex = Pages.LoginPage;
+                }
+
+                onRegistrationClicked: {
+                    layout.currentIndex = Pages.RegistrationPage;
                 }
             }
 
