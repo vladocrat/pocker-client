@@ -262,6 +262,10 @@ Window {
                 onLoginClicked: {
                     layout.currentIndex = Pages.LoginPage;
                 }
+
+                onRegistrationClicked: {
+                    layout.currentIndex = Pages.RegistrationPage;
+                }
             }
 
             Text {

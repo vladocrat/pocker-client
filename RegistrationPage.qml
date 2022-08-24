@@ -69,7 +69,7 @@ Image {
 
                 Layout.fillWidth: true
                 placeholderText: "example@gmail.com"
-                //TODO add mask
+                validator: RegExpValidator { regExp:/\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*/ }
                 font {
                    pointSize: root.fontPointSize
                    family: Globals.fontFamily

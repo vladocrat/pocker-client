@@ -67,7 +67,6 @@ Rectangle {
         }
 
         onClicked: {
-            //TODO change color on click
             root.clicked();
         }
 

@@ -25,6 +25,8 @@ Rectangle {
         transparentBorder: true
         horizontalOffset: 7
         verticalOffset: 12
+        samples: 16
+        color: "#19202b"
     }
 
     Item {
