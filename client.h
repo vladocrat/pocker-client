@@ -6,7 +6,6 @@
 #include <QQmlEngine>
 
 #include "room.h"
-#include "fieldmanager.h"
 #include "LoginData.h"
 
 class Client :  public QObject

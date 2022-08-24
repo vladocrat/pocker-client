@@ -2,16 +2,14 @@
 #include <QtCore>
 #include <QDebug>
 #include <cassert>
+#include <QVector>
 
 #include "client.h"
-#include "fieldmanager.h"
 #include "user.h"
 #include "room.h"
-#include "roommodel.h"
 #include "controllers/modelcontroller.h"
-#include "LoginData.h"
 #include "protocol.h"
-#include "Message.h"
+#include "Message.h" 
 
 Client::Client()
 {
@@ -113,6 +111,7 @@ void Client::handleData(const QByteArray& arr)
     case Protocol::Server::SV_LOGIN: {
         User::instance()->deserialize(stream);
         qDebug() << User::instance();
+        sendCommand(Protocol::Client::CL_REQUEST_ROOMS);
         emit loginSuccessful();
         break;
     }
@@ -138,10 +137,8 @@ void Client::handleData(const QByteArray& arr)
         break;
     }
     case Protocol::Server::SV_JOINED_SUCCESSFULLY: {
-        //TODO
         QByteArray roomData;
         stream >> roomData;
-        //TODO deserialisation or serialization fails.
         auto room = Room::deserialise(roomData);
 
         if (room.id() == -1) {
@@ -164,6 +161,27 @@ void Client::handleData(const QByteArray& arr)
         break;
     }
     case Protocol::Errors::SV_FAILED_TO_CREATE_ROOM: {
+        //TODO
+        qDebug() << "failed to create room";
+        break;
+    }
+    case Protocol::Server::SV_LIST_OF_ROOMS: {
+        QByteArray baRooms;
+        stream >> baRooms;
+        QDataStream readRooms(baRooms);
+        QVector<QByteArray> rooms;
+        int amountOfRooms = 0;
+        readRooms >> amountOfRooms;
+
+        for (int i = 0; i < amountOfRooms; i++) {
+            QByteArray arr;
+            readRooms >> arr;
+            rooms.append(arr);
+        }
+
+        for (const auto& room : rooms) {
+            ModelController::instance()->append(Room::deserialise(room));
+        }
 
         break;
     }
