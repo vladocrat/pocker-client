@@ -10,7 +10,6 @@ class User : public QObject
 {
     Q_OBJECT
 public:
-    //TODO finish singleton
     static User* instance() {
         static User user;
         return &user;
@@ -39,7 +38,11 @@ signals:
     void emailChanged();
 
 private:
-    User();
+    User() {};
+    ~User() {};
+    User(const User&) = delete;
+    User(User&&) = delete;
+    User& operator=(const User&) = delete;
 
     QString m_pfpLink;
     QString m_name;

@@ -1,10 +1,5 @@
 #include "user.h"
 
-User::User()
-{
-
-}
-
 void User::deserialize(QDataStream &stream)
 {
     QByteArray main;
