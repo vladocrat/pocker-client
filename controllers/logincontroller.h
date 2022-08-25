@@ -11,7 +11,6 @@ class LoginController : public QObject
 {
     Q_OBJECT
 public:
-    //TODO finish singleton
     static LoginController* instance()
     {
         static LoginController controller;

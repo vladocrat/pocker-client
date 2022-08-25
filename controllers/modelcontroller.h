@@ -21,7 +21,6 @@ public:
     Q_INVOKABLE void append(const Room& room);
     RoomModel* model();
 
-    //TODO operator<<
     static void registerType()
     {
         qmlRegisterSingletonInstance<ModelController>("ModelController", 1, 0, "ModelController",
