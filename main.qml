@@ -204,6 +204,17 @@ Window {
         height: 350
     }
 
+    ErrorPopup {
+        id: error
+
+        x: Math.round((root.width - error.width) / 2)
+        y: Math.round((root.height - error.height) / 2)
+        width: 400
+        height: 150
+
+        Component.onCompleted: error.open();
+    }
+
     Item {
         id: item
 

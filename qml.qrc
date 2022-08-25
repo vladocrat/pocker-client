@@ -23,5 +23,6 @@
         <file>images/arrows.png</file>
         <file>TopBarButton.qml</file>
         <file>CustomButton.qml</file>
+        <file>ErrorPopup.qml</file>
     </qresource>
 </RCC>

@@ -33,7 +33,7 @@ Rectangle {
         anchors {
             verticalCenter: root.verticalCenter
             left: root.left
-            leftMargin: root.iconSource === "" ? root.width / 4 : root.width / 3
+            leftMargin: root.iconSource === "" ? root.width * 2 / 5  : root.width / 3
         }
     }
 
