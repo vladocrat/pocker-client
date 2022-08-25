@@ -28,7 +28,11 @@ public:
     Q_INVOKABLE bool registerUser(const QString& login, const QString& email, const QString& password);
 
 private:
-    LoginController() {}
+    LoginController() {};
+    ~LoginController() {};
+    LoginController(const LoginController&) = delete;
+    LoginController(LoginController&&) = delete;
+    LoginController operator=(const LoginController&) = delete;
 };
 
 #endif // LOGINCONTROLLER_H
