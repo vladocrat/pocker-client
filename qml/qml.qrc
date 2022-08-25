@@ -1,0 +1,32 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>MainMethods.qml</file>
+        <file>Globals.qml</file>
+        <file>Buttons/BurgerButton.qml</file>
+        <file>Buttons/CustomButton.qml</file>
+        <file>Buttons/CustomToggleButton.qml</file>
+        <file>Buttons/FormSendButton.qml</file>
+        <file>Buttons/qmldir</file>
+        <file>Buttons/TopBarButton.qml</file>
+        <file>FormComponents/FormBox.qml</file>
+        <file>FormComponents/FormSlider.qml</file>
+        <file>FormComponents/FormTextField.qml</file>
+        <file>FormComponents/qmldir</file>
+        <file>Pages/LoginPage.qml</file>
+        <file>Pages/ProfilePage.qml</file>
+        <file>Pages/RegistrationPage.qml</file>
+        <file>Pages/RoomListingPage.qml</file>
+        <file>Pages/RoomScreenDelegate.qml</file>
+        <file>Pages/TopBar.qml</file>
+        <file>Popups/qmldir</file>
+        <file>Popups/RoomCreationForm.qml</file>
+        <file>Utils/HyperLink.qml</file>
+        <file>Utils/ProfileImage.qml</file>
+        <file>Utils/qmldir</file>
+        <file>Pages/qmldir</file>
+        <file>images/arrows.png</file>
+        <file>images/lock.png</file>
+        <file>images/unlock.png</file>
+    </qresource>
+</RCC>

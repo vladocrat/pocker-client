@@ -4,6 +4,9 @@ import QtQuick.Controls 2.15
 import LoginController 1.0
 import Client 1.0
 import Globals 1.0
+import FormComponents 1.0
+import Buttons 1.0
+import Utils 1.0
 
 Image {
     id: root
@@ -104,7 +107,7 @@ Image {
 
                 Layout.fillWidth: true
                 text: "Register"
-                iconSource: "images/arrows.png"
+                iconSource: "qrc:/images/arrows.png"
                 height: password.height
 
                 onClicked: {

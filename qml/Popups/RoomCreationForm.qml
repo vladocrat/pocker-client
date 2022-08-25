@@ -3,6 +3,8 @@ import QtQuick.Controls 2.12
 import QtQuick.Layouts 1.12
 import QtQuick.Extras 1.4
 import ModelController 1.0
+import FormComponents 1.0
+import Buttons 1.0
 
 Popup {
     id: root
@@ -127,7 +129,7 @@ Popup {
                     console.log("failed to create room");
                 }
 
-                form.close();
+                root.close();
             }
         }
     }

@@ -5,6 +5,9 @@ import QtGraphicalEffects 1.12
 import Globals 1.0
 import LoginController 1.0
 import Client 1.0
+import FormComponents 1.0
+import Utils 1.0
+import Buttons 1.0
 
 Page {
     id: root
@@ -102,7 +105,7 @@ Page {
                 Layout.fillWidth: true
                 height: password.height
                 text: "Log In"
-                iconSource: "images/arrows.png"
+                iconSource: "qrc:/images/arrows.png"
 
                 onClicked: {
                     if ((login.text.length < 3 || login.text.length === 0) &&

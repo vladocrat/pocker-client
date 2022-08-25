@@ -5,6 +5,7 @@ import QtGraphicalEffects 1.12
 import User 1.0
 import Client 1.0
 import Globals 1.0
+import Utils 1.0
 
 Rectangle {
     id: root
@@ -27,7 +28,7 @@ Rectangle {
             Layout.alignment: Qt.AlignHCenter
             Layout.preferredWidth: 40
             Layout.preferredHeight: 40
-            source: "images/arrows.png"
+            source: "qrc:/images/arrows.png"
         }
 
         Text {

@@ -32,6 +32,7 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
 
+    engine.addImportPath("qrc:/");
     engine.rootContext()->setContextProperty("roomModel", ModelController::instance()->model());
 
     const QUrl url(QStringLiteral("qrc:/main.qml"));

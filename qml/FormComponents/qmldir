@@ -1,0 +1,5 @@
+module FormComponents
+
+FormBox 1.0 FormBox.qml
+FormSlider 1.0 FormSlider.qml
+FormTextField 1.0 FormTextField.qml

@@ -1,11 +1,12 @@
 QT += quick network
 
 INCLUDEPATH += $$PWD\\pocker-common\\headers\\ \
-               #..\\client\\ \
-               #..\\client\\pocker-common\\headers\\ \
-               #..\\pocker-client\\ \
-               #..\\pocker-client\\pocker-common\\ \
-               #..\\pocker-client\\pocker-common\\headers\\ \
+
+INCLUDEPATH += \
+   $$PWD\\pocker-common\\headers\\ \
+
+QML_IMPORT_PATH = \
+    $$PWD\\qml\\
 
 SOURCES += \
         controllers\\*.cpp \
@@ -25,7 +26,7 @@ HEADERS += \
     roommodel.h \
     user.h \
 
-RESOURCES += qml.qrc
+RESOURCES += $$PWD\\qml\\qml.qrc
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

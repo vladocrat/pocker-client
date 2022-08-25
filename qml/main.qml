@@ -5,6 +5,10 @@ import QtQuick.Controls 2.0
 import Client 1.0
 import Globals 1.0
 import Page 1.0
+import Pages 1.0
+import Buttons 1.0
+import Popups 1.0
+import Utils 1.0
 
 Window {
     id: root

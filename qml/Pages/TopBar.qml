@@ -2,6 +2,7 @@ import QtQuick 2.0
 import QtQuick.Layouts 1.12
 import RoomModel 1.0
 import Globals 1.0
+import Buttons 1.0
 
 Rectangle {
     id: root
