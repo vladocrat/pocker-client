@@ -34,6 +34,7 @@ Makefile*
 .qtc_clangd/.../...
 .qtc_clangd/
 debug/
+release/
 
 # Qt unit tests
 target_wrapper.*
