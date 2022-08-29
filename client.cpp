@@ -125,7 +125,6 @@ void Client::handleData(const QByteArray& arr)
     switch (command) {
     case Protocol::Server::SV_LOGIN: {
         User::instance()->deserialize(stream);
-        qDebug() << User::instance();
         sendCommand(Protocol::Client::CL_REQUEST_ROOMS);
         emit loginSuccessful();
         break;
@@ -135,15 +134,7 @@ void Client::handleData(const QByteArray& arr)
         break;
     }
     case Protocol::Server::SV_REGISTER: {
-        //TODO change
-//        bool success;
-//        stream >> success;
-//        if (success) {
-//            emit registrationSuccessful();
-//        } else {
-//            emit registrationFailed();
-//        }
-//        break;
+        emit registrationSuccessful();
     }
     case Protocol::Errors::SV_REGISTRATION_ERR: {
         emit registrationFailed(Internal::readMsg(stream));
