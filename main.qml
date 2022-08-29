@@ -211,8 +211,6 @@ Window {
         y: Math.round((root.height - error.height) / 2)
         width: 400
         height: 150
-
-        Component.onCompleted: error.open();
     }
 
     Item {
@@ -235,9 +233,21 @@ Window {
                     layout.currentIndex = Pages.RoomListingPage;
                 }
 
+                onFailedToSendRequest: {
+                    error.text.font.pointSize = 13;
+                    error.errorMessage = "Failed to connect to server";
+                    error.open();
+                }
+
+                onInfoError: {
+                    error.text.font.pointSize = 15;
+                    error.errorMessage = msg;
+                    error.open();
+                }
+
                 onLoginFailed: {
-                    err.text = msg;
-                    layout.currentIndex = 3;//TODO show err
+                    error.errorMessage = msg;
+                    error.open();
                 }
 
                 onRegistrationRequired:  {
@@ -256,9 +266,15 @@ Window {
                     layout.currentIndex = Pages.LoginPage;
                 }
 
+                onFailedToSendRequest: {
+                    error.text.font.pointSize = 13;
+                    error.errorMessage = "Failed to connect to server";
+                    error.open();
+                }
+
                 onRegistrationFailed: {
-                    err.text = msg;
-                    layout.currentIndex = 3;//TODO show err
+                    error.errorMessage = msg
+                    error.open();
                 }
 
                 onLoginRequired: {
@@ -277,14 +293,6 @@ Window {
                 onRegistrationClicked: {
                     layout.currentIndex = Pages.RegistrationPage;
                 }
-            }
-
-            Text {
-                id: err
-
-                color: "red"
-                font.pointSize: 20
-                text: "error"
             }
         }
     }

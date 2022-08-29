@@ -12,7 +12,7 @@ public:
         LoginPage = 0,
         ProfilePage,
         RegistrationPage,
-        RoomListingPage
+        RoomListingPage,
     };
     Q_ENUM(Pages);
 

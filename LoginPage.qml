@@ -12,7 +12,8 @@ Page {
     signal registrationRequired();
     signal loginSuccessful();
     signal loginFailed(var msg);
-    signal failedToSendRequest();
+    signal failedToSendRequest(var msg);
+    signal infoError(var msg);
 
     property int fontPointSize: 13;
 
@@ -107,8 +108,7 @@ Page {
                 onClicked: {
                     if ((login.text.length < 3 || login.text.length === 0) &&
                             (password.text.length === 0 || password.text.length < 3)) {
-                        //TODO show error?
-                        console.log("fields empty or not enough chars");
+                        root.infoError("fields empty or not enough chars");
                         return;
                     }
 

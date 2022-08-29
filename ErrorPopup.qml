@@ -6,6 +6,7 @@ Popup {
     id: root
 
     property string errorMessage: "ERROR"
+    property alias text: text
 
     modal: true
     focus: true
@@ -16,6 +17,8 @@ Popup {
         anchors.margins: 5
 
         Text {
+            id: text
+
             Layout.alignment: Qt.AlignCenter
             text: root.errorMessage
             font.pointSize: 20
@@ -27,6 +30,7 @@ Popup {
             Layout.preferredHeight: 35
             Layout.preferredWidth: 90
             text: "OK"
+            focus: true
 
             onClicked: {
                 root.close();
