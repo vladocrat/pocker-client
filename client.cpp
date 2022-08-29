@@ -96,7 +96,6 @@ QTcpSocket* Client::getSocket() const
 
 void Client::read()
 {
-    qDebug() << Q_FUNC_INFO;
     QDataStream another(m_socket);
 
     if ((m_socket->bytesAvailable() >= sizeof(int)) && m_packageSize == -1) {
