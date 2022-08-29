@@ -22,7 +22,3 @@ bool LoginController::registerUser(const QString &login, const QString &email, c
     data.email = email;
     return Client::instance()->send(Protocol::Client::CL_REGISTER, data.serialise());
 }
-
-
-
-

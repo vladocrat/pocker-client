@@ -1,3 +1,4 @@
 module Popups
 
 RoomCreationForm 1.0 RoomCreationForm.qml
+ErrorPopup 1.0 ErrorPopup.qml
