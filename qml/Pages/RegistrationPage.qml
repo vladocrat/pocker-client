@@ -14,7 +14,7 @@ Image {
     signal loginRequired();
     signal registrationSucessful();
     signal registrationFailed(var msg);
-    signal failedToSendRequest();
+    signal failedToSendRequest(var msg);
 
     property int fontPointSize: 13;
 
@@ -112,7 +112,7 @@ Image {
 
                 onClicked: {
                     if (!LoginController.registerUser(login.text, email.text, password.text)) {
-                        root.failedToSendRequest();
+                        root.failedToSendRequest("Failed to connect to server");
                     }
                 }
             }

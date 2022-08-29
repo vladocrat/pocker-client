@@ -239,7 +239,7 @@ Window {
 
                 onFailedToSendRequest: {
                     error.text.font.pointSize = 13;
-                    error.errorMessage = "Failed to connect to server";
+                    error.errorMessage = msg;
                     error.open();
                 }
 
@@ -272,7 +272,7 @@ Window {
 
                 onFailedToSendRequest: {
                     error.text.font.pointSize = 13;
-                    error.errorMessage = "Failed to connect to server";
+                    error.errorMessage = msg;
                     error.open();
                 }
 

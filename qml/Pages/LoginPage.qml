@@ -116,7 +116,7 @@ Page {
                     }
 
                     if (!LoginController.login(login.text, password.text)) {
-                        root.failedToSendRequest();
+                        root.failedToSendRequest("Failed to connect to server");
                     }
                 }
             }

@@ -35,7 +35,7 @@ private slots:
 
 signals:
     void registrationSuccessful();
-    void registrationFailed();
+    void registrationFailed(const QString& msg);
     void loginFailed(const QString& msg);
     void loginSuccessful();
     void joinedSuccessfully(const Room& room);

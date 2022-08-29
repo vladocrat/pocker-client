@@ -11,6 +11,17 @@
 #include "protocol.h"
 #include "Message.h" 
 
+namespace Internal
+{
+QString readMsg(QDataStream& stream)
+{
+    Message msg;
+    stream >> msg;
+
+    return msg.text;
+}
+}
+
 Client::Client()
 {
     m_socket = new QTcpSocket;
@@ -28,6 +39,10 @@ Client::~Client()
 void Client::connectHost()
 {
     m_socket->connectToHost(address, port, QIODevice::ReadWrite);
+
+    if (!m_socket->waitForConnected(1000)) {
+        qDebug() << "time for connection exceeded";
+    }
 }
 
 bool Client::sendCommand(int command)
@@ -116,24 +131,22 @@ void Client::handleData(const QByteArray& arr)
         break;
     }
     case Protocol::Errors::SV_LOGIN_ERR: {
-        Message msg;
-        stream >> msg;
-        emit loginFailed(msg.text);
+        emit loginFailed(Internal::readMsg(stream));
         break;
     }
     case Protocol::Server::SV_REGISTER: {
         //TODO change
-        bool success;
-        stream >> success;
-        if (success) {
-            emit registrationSuccessful();
-        } else {
-            emit registrationFailed();
-        }
-        break;
+//        bool success;
+//        stream >> success;
+//        if (success) {
+//            emit registrationSuccessful();
+//        } else {
+//            emit registrationFailed();
+//        }
+//        break;
     }
     case Protocol::Errors::SV_REGISTRATION_ERR: {
-        //TODO
+        emit registrationFailed(Internal::readMsg(stream));
         break;
     }
     case Protocol::Server::SV_JOINED_SUCCESSFULLY: {
@@ -195,6 +208,12 @@ void Client::handleData(const QByteArray& arr)
 bool Client::checkConnection()
 {
     if (m_socket->state() != QTcpSocket::ConnectedState) {
+        connectHost();
+
+        if (m_socket->state() == QTcpSocket::ConnectedState) {
+            return true;
+        }
+
         qDebug() << "socket not connected";
 
         return false;
