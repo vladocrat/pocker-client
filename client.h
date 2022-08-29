@@ -38,6 +38,7 @@ signals:
     void loginFailed(const QString& msg);
     void loginSuccessful();
     void joinedSuccessfully(const Room& room);
+    void roomCreationFailed(const QString& msg);
 
 private:
     Client();

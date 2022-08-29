@@ -165,8 +165,7 @@ void Client::handleData(const QByteArray& arr)
         break;
     }
     case Protocol::Errors::SV_FAILED_TO_CREATE_ROOM: {
-        //TODO
-        qDebug() << "failed to create room";
+        emit roomCreationFailed("Failed to create room");
         break;
     }
     case Protocol::Server::SV_LIST_OF_ROOMS: {

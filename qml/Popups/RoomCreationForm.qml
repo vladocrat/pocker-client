@@ -5,9 +5,12 @@ import QtQuick.Extras 1.4
 import ModelController 1.0
 import FormComponents 1.0
 import Buttons 1.0
+import Client 1.0
 
 Popup {
     id: root
+
+    signal roomCreationFailed(var msg)
 
     property int inputFieldsWidth: root.width / 1.25
 
@@ -105,28 +108,34 @@ Popup {
             }
         }
 
+        Connections {
+            target: Client
+
+            function roomCreationFailed(msg) {
+                root.roomCreationFailed(msg)
+            }
+        }
+
         FormSendButton {
             Layout.alignment: Qt.AlignCenter
             Layout.preferredWidth: root.inputFieldsWidth / 2
             Layout.preferredHeight: 35
             text: "Create"
 
-            //TODO show error if something is wrong
             onClicked: {
                 if (name.text.legth === 0) {
-                    console.log("name is empty");
+                    root.roomCreationFailed("Some info is wrong or missing");
                     return;
                 }
 
                 if (!toggleBtn.on && password.text.length < 4) {
-                    console.log("password isn't set");
+                    root.roomCreationFailed("Some info is wrong or missing");
                     return;
                 }
 
                 if (!ModelController.createRoom(name.text, maxPlayersSlider.value,
                                             initialBetSlider.value, toggleBtn.on, password.text)) {
-                    //TODO show error to user
-                    console.log("failed to create room");
+                    root.roomCreationFailed("Some info is wrong or missing");
                 }
 
                 root.close();
