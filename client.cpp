@@ -11,6 +11,17 @@
 #include "protocol.h"
 #include "Message.h" 
 
+namespace Internal
+{
+QString readMsg(QDataStream& stream)
+{
+    Message msg;
+    stream >> msg;
+
+    return msg.text;
+}
+}
+
 Client::Client()
 {
     m_socket = new QTcpSocket;
@@ -28,6 +39,10 @@ Client::~Client()
 void Client::connectHost()
 {
     m_socket->connectToHost(address, port, QIODevice::ReadWrite);
+
+    if (!m_socket->waitForConnected(1000)) {
+        qDebug() << "time for connection exceeded";
+    }
 }
 
 bool Client::sendCommand(int command)
@@ -81,7 +96,6 @@ QTcpSocket* Client::getSocket() const
 
 void Client::read()
 {
-    qDebug() << Q_FUNC_INFO;
     QDataStream another(m_socket);
 
     if ((m_socket->bytesAvailable() >= sizeof(int)) && m_packageSize == -1) {
@@ -110,30 +124,19 @@ void Client::handleData(const QByteArray& arr)
     switch (command) {
     case Protocol::Server::SV_LOGIN: {
         User::instance()->deserialize(stream);
-        qDebug() << User::instance();
         sendCommand(Protocol::Client::CL_REQUEST_ROOMS);
         emit loginSuccessful();
         break;
     }
     case Protocol::Errors::SV_LOGIN_ERR: {
-        Message msg;
-        stream >> msg;
-        emit loginFailed(msg.text);
+        emit loginFailed(Internal::readMsg(stream));
         break;
     }
     case Protocol::Server::SV_REGISTER: {
-        //TODO change
-        bool success;
-        stream >> success;
-        if (success) {
-            emit registrationSuccessful();
-        } else {
-            emit registrationFailed();
-        }
-        break;
+        emit registrationSuccessful();
     }
     case Protocol::Errors::SV_REGISTRATION_ERR: {
-        //TODO
+        emit registrationFailed(Internal::readMsg(stream));
         break;
     }
     case Protocol::Server::SV_JOINED_SUCCESSFULLY: {
@@ -161,8 +164,7 @@ void Client::handleData(const QByteArray& arr)
         break;
     }
     case Protocol::Errors::SV_FAILED_TO_CREATE_ROOM: {
-        //TODO
-        qDebug() << "failed to create room";
+        emit roomCreationFailed("Failed to create room");
         break;
     }
     case Protocol::Server::SV_LIST_OF_ROOMS: {
@@ -195,6 +197,12 @@ void Client::handleData(const QByteArray& arr)
 bool Client::checkConnection()
 {
     if (m_socket->state() != QTcpSocket::ConnectedState) {
+        connectHost();
+
+        if (m_socket->state() == QTcpSocket::ConnectedState) {
+            return true;
+        }
+
         qDebug() << "socket not connected";
 
         return false;

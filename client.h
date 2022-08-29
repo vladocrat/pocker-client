@@ -18,7 +18,6 @@ public:
         return &client;
     }
 
-    Q_INVOKABLE void connectHost();
     Q_INVOKABLE bool sendCommand(int command);
     Q_INVOKABLE bool send(int command, const QByteArray& data);
 
@@ -35,10 +34,11 @@ private slots:
 
 signals:
     void registrationSuccessful();
-    void registrationFailed();
+    void registrationFailed(const QString& msg);
     void loginFailed(const QString& msg);
     void loginSuccessful();
     void joinedSuccessfully(const Room& room);
+    void roomCreationFailed(const QString& msg);
 
 private:
     Client();
@@ -49,6 +49,7 @@ private:
 
     void handleData(const QByteArray& arr);
     bool checkConnection();
+    void connectHost();
 
     const int port = 8082;
     const QString address = "127.0.0.1";

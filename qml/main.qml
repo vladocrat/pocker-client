@@ -206,6 +206,11 @@ Window {
         y: Math.round((root.height - form.height) / 2)
         width: 270
         height: 350
+
+        onRoomCreationFailed: {
+            error.errorMessage = msg;
+            error.open();
+        }
     }
 
     ErrorPopup {
@@ -239,7 +244,7 @@ Window {
 
                 onFailedToSendRequest: {
                     error.text.font.pointSize = 13;
-                    error.errorMessage = "Failed to connect to server";
+                    error.errorMessage = msg;
                     error.open();
                 }
 
@@ -272,7 +277,7 @@ Window {
 
                 onFailedToSendRequest: {
                     error.text.font.pointSize = 13;
-                    error.errorMessage = "Failed to connect to server";
+                    error.errorMessage = msg;
                     error.open();
                 }
 
