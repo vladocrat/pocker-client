@@ -3,7 +3,6 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 
 import Client 1.0
-import FieldManager 1.0
 
 Item {
     id: root
@@ -76,7 +75,7 @@ Item {
 
 
             Label {
-                text: FieldManager.text
+
             }
         }
     }

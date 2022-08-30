@@ -1,7 +1,5 @@
 QT += quick network
 
-INCLUDEPATH += $$PWD\\pocker-common\\headers\\ \
-
 INCLUDEPATH += \
    $$PWD\\pocker-common\\headers\\ \
 
@@ -11,7 +9,6 @@ QML_IMPORT_PATH = \
 SOURCES += \
         controllers\\*.cpp \
         client.cpp \
-        fieldmanager.cpp \
         main.cpp \
         roommodel.cpp \
         user.cpp \
@@ -22,7 +19,6 @@ HEADERS += \
     pocker-common\\headers\\*.h \
     Pages.h \
     client.h \
-    fieldmanager.h \
     roommodel.h \
     user.h \
 

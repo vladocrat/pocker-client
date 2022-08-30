@@ -11,6 +11,7 @@ Page {
     signal loginClicked();
     signal registrationClicked();
     signal profileClicked();
+    signal joinedRoom(var room);
 
     header: TopBar {
         id: topBar
@@ -39,6 +40,14 @@ Page {
 
             topBar.burgerButton.state= "open";
             profileInfo.visible = true;
+        }
+    }
+
+    Connections {
+        target: Client
+
+        function onJoinedSuccessfully(room) {
+            root.joinedRoom(room);
         }
     }
 

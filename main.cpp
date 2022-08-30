@@ -6,20 +6,20 @@
 #include <memory>
 
 #include "client.h"
-#include "fieldmanager.h"
 #include "user.h"
 #include "Pages.h"
 #include "roommodel.h"
 #include "controllers/logincontroller.h"
 #include "controllers/modelcontroller.h"
 #include "controllers/roomcontroller.h"
+#include "room.h"
 
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
 
     Client::registerType();
-    FieldManager::registerType();
+    Room::registerType();
     User::registerType();
     Page::registerType();
     RoomModel::registerType();

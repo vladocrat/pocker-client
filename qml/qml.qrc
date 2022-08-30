@@ -29,5 +29,6 @@
         <file>images/lock.png</file>
         <file>images/unlock.png</file>
         <file>Popups/ErrorPopup.qml</file>
+        <file>Pages/GamePage.qml</file>
     </qresource>
 </RCC>

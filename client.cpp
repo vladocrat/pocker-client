@@ -10,6 +10,7 @@
 #include "controllers/modelcontroller.h"
 #include "protocol.h"
 #include "Message.h" 
+#include "integer.h"
 
 namespace Internal
 {
@@ -145,7 +146,9 @@ void Client::handleData(const QByteArray& arr)
         auto room = Room::deserialise(roomData);
 
         if (room.id() == -1) {
-            qDebug() << "failed to join";
+            qDebug() << "Failed to join";
+
+            return;
         }
 
         emit joinedSuccessfully(room);
@@ -161,6 +164,12 @@ void Client::handleData(const QByteArray& arr)
         stream >> roomData;
         auto room = Room::deserialise(roomData);
         ModelController::instance()->append(room);
+        Integer id {room.id()};
+
+        if (!send(Protocol::Client::CL_ROOM_CHOICE, id.serialise())) {
+            qDebug() << "Failed to send request";
+        }
+
         break;
     }
     case Protocol::Errors::SV_FAILED_TO_CREATE_ROOM: {

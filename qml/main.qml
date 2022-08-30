@@ -302,6 +302,25 @@ Window {
                 onRegistrationClicked: {
                     layout.currentIndex = Pages.RegistrationPage;
                 }
+
+                onJoinedRoom: {
+                    layout.currentIndex = Pages.GamePage;
+                    gameRoom.room.id = room.id;
+                    gameRoom.room.name = room.name;
+                    //gameRoom.room.access = room.access;
+                    //gameRoom.room.status = room.status;
+                    gameRoom.room.maxPlayerCount = room.maxPlayerCount;
+                    gameRoom.room.playerCount = room.playerCount;
+                    gameRoom.room.password = room.password;
+                    gameRoom.room.initialBet = room.initialBet;
+                }
+            }
+
+            GamePage {
+                id: gameRoom
+
+                Layout.fillHeight: true
+                Layout.fillWidth: true
             }
         }
     }

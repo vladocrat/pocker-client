@@ -5,3 +5,4 @@ ProfilePage 1.0 ProfilePage.qml
 RegistrationPage 1.0 RegistrationPage.qml
 RoomListingPage 1.0 RoomListingPage.qml
 TopBar 1.0 TopBar.qml
+GamePage 1.0 GamePage.qml

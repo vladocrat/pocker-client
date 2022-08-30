@@ -13,6 +13,7 @@ public:
         ProfilePage,
         RegistrationPage,
         RoomListingPage,
+        GamePage
     };
     Q_ENUM(Pages);
 

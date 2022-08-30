@@ -59,7 +59,7 @@ void RoomModel::updateRoom(const Room& newRoom)
     auto room = findRoomById(newRoom.id());
 
     if (!room) {
-        qDebug() << "unable to find room";
+        qDebug() << "Unable to find room";
 
         return;
     }
